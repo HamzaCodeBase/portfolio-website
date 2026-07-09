@@ -28,27 +28,22 @@ export function Education() {
           </Reveal>
 
           <div className="grid gap-6">
-            <Reveal delay={0.06}>
-              <div className="rounded-2xl border-2 border-white/5 bg-white/[0.02] p-6 transition-all duration-500 hover:border-[#D97706] hover:shadow-[0_0_30px_rgba(217,119,6,0.35),0_0_60px_rgba(217,119,6,0.12)]">
-                <h3 className="font-display text-base font-semibold text-foreground">Certifications</h3>
-                <ul className="mt-4 space-y-3">
-                  {CERTIFICATIONS.map((cert) => (
-                    <li key={cert.name}>
-                      <a
-                        href={cert.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm text-foreground transition-colors hover:text-[#D97706]"
-                      >
-                        {cert.name}
-                      </a>
-                      <p className="text-xs text-muted-foreground">{cert.issuer}</p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-            <Reveal delay={0.08}>
+            {CERTIFICATIONS.map((cert, i) => (
+              <Reveal key={cert.name} delay={0.06 + i * 0.03}>
+                <div className="rounded-2xl border-2 border-white/5 bg-white/[0.02] p-5 transition-all duration-500 hover:border-[#D97706] hover:shadow-[0_0_30px_rgba(217,119,6,0.35),0_0_60px_rgba(217,119,6,0.12)]">
+                  <a
+                    href={cert.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-medium text-foreground transition-colors hover:text-[#D97706]"
+                  >
+                    {cert.name}
+                  </a>
+                  <p className="mt-1 text-xs text-muted-foreground">{cert.issuer}</p>
+                </div>
+              </Reveal>
+            ))}
+            <Reveal delay={0.15}>
               <div className="rounded-2xl border-2 border-white/5 bg-white/[0.02] p-6 transition-all duration-500 hover:border-[#D97706] hover:shadow-[0_0_30px_rgba(217,119,6,0.35),0_0_60px_rgba(217,119,6,0.12)]">
                 <h3 className="font-display text-base font-semibold text-foreground">Languages</h3>
                 <div className="mt-4 flex flex-wrap gap-2">
