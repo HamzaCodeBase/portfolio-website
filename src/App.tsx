@@ -12,6 +12,7 @@ import { Footer } from '@/components/footer'
 import { CursorGlow } from '@/components/cursor-glow'
 import { CursorDot } from '@/components/cursor-dot'
 import { ScrollProgress } from '@/components/scroll-progress'
+import { SectionReveal } from '@/components/reveal'
 
 export default function App() {
   return (
@@ -20,16 +21,16 @@ export default function App() {
       <CursorDot />
       <ScrollProgress />
       <Navbar />
-      <main>
+      <main style={{ perspective: '1200px' }}>
         <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Education />
-        <GithubStats />
-        <Testimonials />
-        <Contact />
+        <SectionReveal><About /></SectionReveal>
+        <SectionReveal><Skills /></SectionReveal>
+        <SectionReveal><Projects /></SectionReveal>
+        <SectionReveal><Experience /></SectionReveal>
+        <SectionReveal><Education /></SectionReveal>
+        <SectionReveal><GithubStats /></SectionReveal>
+        <SectionReveal><Testimonials /></SectionReveal>
+        <SectionReveal><Contact /></SectionReveal>
       </main>
       <Footer />
     </div>

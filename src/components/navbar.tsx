@@ -42,7 +42,7 @@ export function Navbar() {
       aria-label="Main navigation"
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-700 ${
         visible ? 'translate-y-0' : '-translate-y-full'
-      } ${scrolled ? 'glass' : 'bg-transparent'}`}
+      } bg-[#09090B]`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Magnetic as="a" href="#home" strength={0.15}>
@@ -89,7 +89,7 @@ export function Navbar() {
       </div>
 
       {open && (
-        <div className="mx-4 mb-4 rounded-2xl border border-white/10 bg-[#09090B]/95 p-4 backdrop-blur-2xl md:hidden">
+        <div className="mx-4 mb-4 rounded-2xl border border-white/10 bg-[#09090B]/95 p-4 md:hidden">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}

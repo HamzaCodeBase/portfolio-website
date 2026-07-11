@@ -90,8 +90,6 @@
 
 @utility glass {
   background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
@@ -182,9 +180,9 @@
 }
 
 @utility animate-marquee {
-  animation: marquee 20s linear infinite;
+  animation: marquee 40s linear infinite;
   &:hover { animation-play-state: paused; }
 }
 
-@utility section-padding { @apply px-6 py-28 md:py-36; }
+@utility section-padding { @apply px-6 py-16 md:py-20; }
 @utility max-w-content { @apply mx-auto max-w-7xl; }

@@ -2,16 +2,18 @@ import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Magnetic } from '@/components/magnetic'
 import { Typewriter } from '@/components/tilt-card'
-import { ScrambleText } from '@/components/scramble-text'
+
 import { HERO_STATS, PROFILE } from '@/lib/data'
 
 const ROLES = [
   'ASP.NET Core Developer',
-  'Blazor Architect',
+  'Backend Engineer',
+  'Blazor Developer',
   'React Engineer',
   'Azure Specialist',
-  'Clean Architecture Advocate',
-  'Microservices Designer',
+  'Clean Architecture',
+  'System Design',
+  'AI Integration',
 ]
 
 const nameChars = PROFILE.name.split('')
@@ -83,107 +85,116 @@ export function Hero() {
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-16 pt-24 md:pb-20 md:pt-32">
-        <div className="max-w-4xl">
-          {/* Availability badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: totalLetterDuration + 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#D97706]/20 bg-[#D97706]/5 px-4 py-2 text-xs font-medium text-[#D97706] animate-pulse-soft"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-            </span>
-            Available for projects
-          </motion.div>
-
-          {/* Letter-by-letter heading */}
-          <h1 className="font-display text-5xl font-bold leading-[1.04] tracking-tight sm:text-7xl md:text-8xl lg:text-9xl">
-            {nameChars.map((char, i) => (
-              <motion.span
-                key={i}
-                initial={{ opacity: 0, y: 80, rotateX: -90 }}
-                animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                transition={{ duration: 0.6, delay: letterBaseDelay + i * letterDelay, ease: [0.25, 0.1, 0.25, 1] }}
-                className="inline-block origin-bottom"
-                style={{
-                  color: i < splitIdx ? '#D97706' : '#E11D48',
-                  marginRight: char === ' ' ? '0.25em' : undefined,
-                }}
-              >
-                {char === ' ' ? '\u00A0' : char}
-              </motion.span>
-            ))}
-          </h1>
-
-          {/* Gradient underline */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.7, delay: totalLetterDuration + 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-            className="mt-4 h-[2px] w-56 origin-left animate-shimmer-gradient sm:w-72 md:w-96"
-            style={{
-              background: 'linear-gradient(90deg, #D97706, #E11D48, #F59E0B, transparent)',
-            }}
-          />
-
-          {/* Role */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: totalLetterDuration + 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-            className="mt-6 flex items-center gap-3"
-          >
-            <ScrambleText text={PROFILE.title} className="text-base text-muted-foreground sm:text-lg" />
-          </motion.div>
-
-          {/* Typing specialties */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: totalLetterDuration + 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-            className="mt-3 font-mono text-sm text-muted-foreground"
-          >
-            Specializing in{' '}
-            <span className="text-[#F59E0B]">
-              <Typewriter words={ROLES} />
-            </span>
-          </motion.div>
-
-          {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: totalLetterDuration + 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-            className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg"
-          >
-            I architect and ship production .NET systems — APIs, SaaS platforms, and
-            full-stack applications. {PROFILE.yearsExperience} years shipping code
-            that businesses actually run on.
-          </motion.p>
-
-          {/* CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: totalLetterDuration + 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-            className="mt-10 flex flex-wrap gap-4"
-          >
-            <Magnetic as="a" href="#projects" strength={0.2}>
-              <span className="group inline-flex items-center gap-2 rounded-2xl bg-[#D97706] px-8 py-4 font-semibold text-white transition-all hover:shadow-[0_0_40px_rgba(217,119,6,0.3)]">
-                Explore my work
-                <svg viewBox="0 0 16 16" fill="none" className="h-4 w-4 transition-transform group-hover:translate-x-1">
-                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+        <div className="grid items-center gap-12 lg:grid-cols-[1.3fr_1fr]">
+          <div>
+            {/* Availability badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: totalLetterDuration + 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+              className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#D97706]/20 bg-[#D97706]/5 px-4 py-2 text-xs font-medium text-[#D97706] animate-pulse-soft"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
               </span>
-            </Magnetic>
-            <Magnetic as="a" href="#contact" strength={0.2}>
-              <span className="inline-flex items-center gap-2 rounded-2xl border border-white/10 px-8 py-4 text-sm text-foreground transition-all hover:border-[#D97706]/30 hover:bg-white/5">
-                Get in touch
+              Available for projects
+            </motion.div>
+
+            {/* Letter-by-letter heading */}
+            <h1 className="whitespace-nowrap font-display text-5xl font-bold leading-[1.04] tracking-tight sm:text-7xl md:text-8xl lg:text-7xl xl:text-9xl">
+              {nameChars.map((char, i) => (
+                <motion.span
+                  key={i}
+                  initial={{ opacity: 0, y: 80, rotateX: -90 }}
+                  animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                  transition={{ duration: 0.6, delay: letterBaseDelay + i * letterDelay, ease: [0.25, 0.1, 0.25, 1] }}
+                  className="inline-block origin-bottom"
+                  style={{
+                    color: i < splitIdx ? '#D97706' : '#E11D48',
+                    marginRight: char === ' ' ? '0.25em' : undefined,
+                  }}
+                >
+                  {char === ' ' ? '\u00A0' : char}
+                </motion.span>
+              ))}
+            </h1>
+
+            {/* Gradient underline */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.7, delay: totalLetterDuration + 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+              className="mt-4 h-[2px] w-56 origin-left animate-shimmer-gradient sm:w-72 md:w-96"
+              style={{
+                background: 'linear-gradient(90deg, #D97706, #E11D48, #F59E0B, transparent)',
+              }}
+            />
+
+            {/* Role */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: totalLetterDuration + 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+              className="mt-6 flex items-center gap-3"
+            >
+              <p className="text-base text-muted-foreground sm:text-lg">
+                <span className="text-[#D97706] font-semibold">.NET</span> Full Stack Developer
+              </p>
+            </motion.div>
+
+            {/* Typing specialties */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: totalLetterDuration + 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+              className="mt-3 font-mono text-sm text-muted-foreground"
+            >
+              Expert{' '}
+              <span className="text-[#F59E0B]">
+                <Typewriter words={ROLES} />
               </span>
-            </Magnetic>
-          </motion.div>
+            </motion.div>
+
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: totalLetterDuration + 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+              className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg"
+            >
+              I build .NET apps, APIs, and full-stack platforms that run smoothly. 
+              For the last {PROFILE.yearsExperience} years, I&apos;ve focused on writing clean, reliable code 
+              that solves real business problems and is easy to maintain.
+            </motion.p>
+
+            {/* CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: totalLetterDuration + 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+              className="mt-10 flex flex-wrap gap-4"
+            >
+              <Magnetic as="a" href="#projects" strength={0.2}>
+                <span className="group inline-flex items-center gap-2 rounded-2xl bg-[#D97706] px-8 py-4 font-semibold text-white transition-all hover:shadow-[0_0_40px_rgba(217,119,6,0.3)]">
+                  Explore my work
+                  <svg viewBox="0 0 16 16" fill="none" className="h-4 w-4 transition-transform group-hover:translate-x-1">
+                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+              </Magnetic>
+              <Magnetic as="a" href="#contact" strength={0.2}>
+                <span className="inline-flex items-center gap-2 rounded-2xl border border-white/10 px-8 py-4 text-sm text-foreground transition-all hover:border-[#D97706]/30 hover:bg-white/5">
+                  Get in touch
+                </span>
+              </Magnetic>
+            </motion.div>
+          </div>
+
+          {/* 3D wireframe mesh */}
+          <div className="relative hidden h-full min-h-[400px] lg:block">
+            <HeroMesh mousePos={mousePos} />
+          </div>
 
         </div>
 
@@ -197,9 +208,13 @@ export function Hero() {
             <div className="flex w-max animate-marquee gap-2">
               {[
                 'ASP.NET Core', 'Blazor', 'React', 'Azure', 'SQL Server', 'Docker', 'GraphQL',
+                'C#', 'TypeScript', 'JavaScript', 'PostgreSQL', 'MongoDB', 'Redis', 'SignalR',
+                'Entity Framework Core', 'MediatR', 'FluentValidation', 'xUnit', 'Auth0', 'Stripe',
+                'GitHub Actions', 'IIS', 'Serilog', 'Sentry', 'SonarQube', 'Docker', 'Kestrel',
                 'ASP.NET Core', 'Blazor', 'React', 'Azure', 'SQL Server', 'Docker', 'GraphQL',
-                'ASP.NET Core', 'Blazor', 'React', 'Azure', 'SQL Server', 'Docker', 'GraphQL',
-                'ASP.NET Core', 'Blazor', 'React', 'Azure', 'SQL Server', 'Docker', 'GraphQL',
+                'C#', 'TypeScript', 'JavaScript', 'PostgreSQL', 'MongoDB', 'Redis', 'SignalR',
+                'Entity Framework Core', 'MediatR', 'FluentValidation', 'xUnit', 'Auth0', 'Stripe',
+                'GitHub Actions', 'IIS', 'Serilog', 'Sentry', 'SonarQube', 'Docker', 'Kestrel',
               ].map((tech, i) => (
                 <span
                   key={`${tech}-${i}`}
@@ -231,7 +246,160 @@ export function Hero() {
           </motion.div>
       </div>
 
-
     </section>
+  )
+}
+
+const PHI = (1 + Math.sqrt(5)) / 2
+
+const ICOSAHEDRON_R = 90
+
+const ICOSAHEDRON_VERTS: [number, number, number][] = [
+  [-1, PHI, 0], [1, PHI, 0], [-1, -PHI, 0], [1, -PHI, 0],
+  [0, -1, PHI], [0, 1, PHI], [0, -1, -PHI], [0, 1, -PHI],
+  [PHI, 0, -1], [PHI, 0, 1], [-PHI, 0, -1], [-PHI, 0, 1],
+].map(v => v.map(c => c * ICOSAHEDRON_R / Math.sqrt(1 + PHI * PHI))) as [number, number, number][]
+
+const ICOSAHEDRON_EDGES: [number, number][] = [
+  [0, 1], [0, 4], [0, 5], [0, 10], [0, 11],
+  [1, 5], [1, 7], [1, 8], [1, 9],
+  [2, 3], [2, 4], [2, 6], [2, 10], [2, 11],
+  [3, 6], [3, 8], [3, 9],
+  [4, 5], [4, 10], [4, 11],
+  [5, 9], [5, 11],
+  [6, 7], [6, 8], [6, 10],
+  [7, 8], [7, 11],
+  [8, 9], [9, 11], [10, 11],
+]
+
+function project(
+  x: number, y: number, z: number,
+  rx: number, ry: number, rz: number,
+  w: number, h: number,
+  ox: number, oy: number,
+): [number, number, number] | null {
+  let x1 = x * Math.cos(ry) + z * Math.sin(ry)
+  let y1 = y
+  let z1 = -x * Math.sin(ry) + z * Math.cos(ry)
+  let x2 = x1
+  let y2 = y1 * Math.cos(rx) - z1 * Math.sin(rx)
+  let z2 = y1 * Math.sin(rx) + z1 * Math.cos(rx)
+  let x3 = x2 * Math.cos(rz) - y2 * Math.sin(rz)
+  let y3 = x2 * Math.sin(rz) + y2 * Math.cos(rz)
+  let z3 = z2
+  const fl = 400
+  const s = fl / (fl + z3)
+  if (s <= 0) return null
+  return [w / 2 + x3 * s + ox, h / 2 + y3 * s + oy, z3]
+}
+
+function HeroMesh({ mousePos: _mousePos }: { mousePos: { x: number; y: number } }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const rafRef = useRef<number>(0)
+  const mouseRef = useRef(_mousePos)
+  mouseRef.current = _mousePos
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    let w = 0, h = 0
+    const dpr = window.devicePixelRatio || 1
+
+    function resize() {
+      const rect = canvas.getBoundingClientRect()
+      w = rect.width
+      h = rect.height
+      canvas.width = w * dpr
+      canvas.height = h * dpr
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    }
+    resize()
+    window.addEventListener('resize', resize)
+
+    const verts = ICOSAHEDRON_VERTS
+    const edges = ICOSAHEDRON_EDGES
+    const R = ICOSAHEDRON_R
+
+    function draw(time: number) {
+      ctx.clearRect(0, 0, w, h)
+
+      const t = time * 0.001
+
+      const rx = t * 0.35
+      const ry = t * 0.7
+      const rz = t * 0.15
+
+      const mp = mouseRef.current
+      const ox = (mp.x - 0.5) * 12
+      const oy = (mp.y - 0.5) * -8
+
+      for (const [i, j] of edges) {
+        const p1 = project(...verts[i], rx, ry, rz, w, h, ox, oy)
+        const p2 = project(...verts[j], rx, ry, rz, w, h, ox, oy)
+        if (!p1 || !p2) continue
+
+        const dz = (p1[2] + p2[2]) / 2
+        const depth = 1 - (dz + R * 1.2) / (R * 2.4)
+        const alpha = 0.1 + 0.65 * Math.max(0, Math.min(1, depth))
+
+        const ci = (i + j) % 3
+        const color = ci === 0 ? [217, 119, 6] as const
+          : ci === 1 ? [245, 158, 11] as const
+          : [225, 29, 72] as const
+
+        ctx.strokeStyle = `rgba(${color[0]},${color[1]},${color[2]},${alpha})`
+        ctx.lineWidth = 0.8 + alpha * 1.2
+        ctx.beginPath()
+        ctx.moveTo(p1[0], p1[1])
+        ctx.lineTo(p2[0], p2[1])
+        ctx.stroke()
+      }
+
+      for (const v of verts) {
+        const p = project(...v, rx, ry, rz, w, h, ox, oy)
+        if (!p) continue
+        const depth = 1 - (p[2] + R * 1.2) / (R * 2.4)
+        const alpha = 0.3 + 0.7 * Math.max(0, Math.min(1, depth))
+        const radius = 1.5 + alpha * 1.5
+
+        ctx.fillStyle = `rgba(217,119,6,${alpha * 0.8})`
+        ctx.beginPath()
+        ctx.arc(p[0], p[1], radius, 0, Math.PI * 2)
+        ctx.fill()
+
+        ctx.fillStyle = `rgba(217,119,6,${alpha * 0.15})`
+        ctx.beginPath()
+        ctx.arc(p[0], p[1], radius * 3, 0, Math.PI * 2)
+        ctx.fill()
+      }
+
+      const gx = w / 2 + ox
+      const gy = h / 2 + oy
+      const glow = ctx.createRadialGradient(gx, gy, 0, gx, gy, 140)
+      glow.addColorStop(0, 'rgba(217,119,6,0.04)')
+      glow.addColorStop(1, 'rgba(217,119,6,0)')
+      ctx.fillStyle = glow
+      ctx.beginPath()
+      ctx.arc(gx, gy, 140, 0, Math.PI * 2)
+      ctx.fill()
+
+      rafRef.current = requestAnimationFrame(draw)
+    }
+    rafRef.current = requestAnimationFrame(draw)
+
+    return () => {
+      cancelAnimationFrame(rafRef.current)
+      window.removeEventListener('resize', resize)
+    }
+  }, [])
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="h-full w-full"
+    />
   )
 }

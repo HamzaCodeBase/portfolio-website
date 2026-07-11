@@ -30,9 +30,9 @@ export const SOCIALS = {
 export const GITHUB_USERNAME = 'HamzaCodeBase'
 
 export const HERO_STATS = [
-  { value: '3+', label: 'Years building .NET systems' },
-  { value: '5', label: 'Production projects shipped' },
-  { value: '3.92', label: 'CGPA — BS Computer Science' },
+  { value: '3+', label: 'Years building .NET Solutions' },
+  { value: '6+', label: 'Production projects shipped' },
+  { value: '99%', label: 'Clean Architecture & SOLID Compliance' },
 ]
 
 export const ABOUT_PARAGRAPHS = [
