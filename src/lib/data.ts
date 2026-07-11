@@ -23,11 +23,11 @@ export const SOCIALS = {
   email: 'mhamzazafarg@gmail.com',
   phone: '+923081480093',
   linkedin: 'https://linkedin.com/in/hamzazafarg',
-  github: 'https://github.com/HamzaCodeBase',
+  github: 'https://github.com/Hamza-Zafar-9',
   upwork: 'https://www.upwork.com/freelancers/hamzazafar',
 }
 
-export const GITHUB_USERNAME = 'HamzaCodeBase'
+export const GITHUB_USERNAME = 'Hamza-Zafar-9'
 
 export const HERO_STATS = [
   { value: '3+', label: 'Years building .NET Solutions' },

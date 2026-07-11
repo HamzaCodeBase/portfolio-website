@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
-import { Magnetic } from '@/components/magnetic'
+
 import { Typewriter } from '@/components/tilt-card'
 
 import { HERO_STATS, PROFILE } from '@/lib/data'
@@ -302,19 +302,22 @@ function HeroMesh({ mousePos: _mousePos }: { mousePos: { x: number; y: number } 
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
+    const c = canvas.getContext('2d')
+    if (!c) return
+
+    const cvs: HTMLCanvasElement = canvas
+    const cx: CanvasRenderingContext2D = c
 
     let w = 0, h = 0
     const dpr = window.devicePixelRatio || 1
 
     function resize() {
-      const rect = canvas.getBoundingClientRect()
+      const rect = cvs.getBoundingClientRect()
       w = rect.width
       h = rect.height
-      canvas.width = w * dpr
-      canvas.height = h * dpr
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+      cvs.width = w * dpr
+      cvs.height = h * dpr
+      cx.setTransform(dpr, 0, 0, dpr, 0, 0)
     }
     resize()
     window.addEventListener('resize', resize)
@@ -323,16 +326,13 @@ function HeroMesh({ mousePos: _mousePos }: { mousePos: { x: number; y: number } 
     const edges = ICOSAHEDRON_EDGES
     const R = ICOSAHEDRON_R
 
-    function draw(time: number) {
-      ctx.clearRect(0, 0, w, h)
-
-      const t = time * 0.001
-
-      const rx = t * 0.35
-      const ry = t * 0.7
-      const rz = t * 0.15
+    function draw() {
+      cx.clearRect(0, 0, w, h)
 
       const mp = mouseRef.current
+      const rx = (mp.y - 0.5) * Math.PI * 0.8
+      const ry = -(mp.x - 0.5) * Math.PI * 1.2
+      const rz = 0
       const ox = (mp.x - 0.5) * 12
       const oy = (mp.y - 0.5) * -8
 
@@ -350,12 +350,12 @@ function HeroMesh({ mousePos: _mousePos }: { mousePos: { x: number; y: number } 
           : ci === 1 ? [245, 158, 11] as const
           : [225, 29, 72] as const
 
-        ctx.strokeStyle = `rgba(${color[0]},${color[1]},${color[2]},${alpha})`
-        ctx.lineWidth = 0.8 + alpha * 1.2
-        ctx.beginPath()
-        ctx.moveTo(p1[0], p1[1])
-        ctx.lineTo(p2[0], p2[1])
-        ctx.stroke()
+        cx.strokeStyle = `rgba(${color[0]},${color[1]},${color[2]},${alpha})`
+        cx.lineWidth = 0.8 + alpha * 1.2
+        cx.beginPath()
+        cx.moveTo(p1[0], p1[1])
+        cx.lineTo(p2[0], p2[1])
+        cx.stroke()
       }
 
       for (const v of verts) {
@@ -365,26 +365,26 @@ function HeroMesh({ mousePos: _mousePos }: { mousePos: { x: number; y: number } 
         const alpha = 0.3 + 0.7 * Math.max(0, Math.min(1, depth))
         const radius = 1.5 + alpha * 1.5
 
-        ctx.fillStyle = `rgba(217,119,6,${alpha * 0.8})`
-        ctx.beginPath()
-        ctx.arc(p[0], p[1], radius, 0, Math.PI * 2)
-        ctx.fill()
+        cx.fillStyle = `rgba(217,119,6,${alpha * 0.8})`
+        cx.beginPath()
+        cx.arc(p[0], p[1], radius, 0, Math.PI * 2)
+        cx.fill()
 
-        ctx.fillStyle = `rgba(217,119,6,${alpha * 0.15})`
-        ctx.beginPath()
-        ctx.arc(p[0], p[1], radius * 3, 0, Math.PI * 2)
-        ctx.fill()
+        cx.fillStyle = `rgba(217,119,6,${alpha * 0.15})`
+        cx.beginPath()
+        cx.arc(p[0], p[1], radius * 3, 0, Math.PI * 2)
+        cx.fill()
       }
 
       const gx = w / 2 + ox
       const gy = h / 2 + oy
-      const glow = ctx.createRadialGradient(gx, gy, 0, gx, gy, 140)
+      const glow = cx.createRadialGradient(gx, gy, 0, gx, gy, 140)
       glow.addColorStop(0, 'rgba(217,119,6,0.04)')
       glow.addColorStop(1, 'rgba(217,119,6,0)')
-      ctx.fillStyle = glow
-      ctx.beginPath()
-      ctx.arc(gx, gy, 140, 0, Math.PI * 2)
-      ctx.fill()
+      cx.fillStyle = glow
+      cx.beginPath()
+      cx.arc(gx, gy, 140, 0, Math.PI * 2)
+      cx.fill()
 
       rafRef.current = requestAnimationFrame(draw)
     }

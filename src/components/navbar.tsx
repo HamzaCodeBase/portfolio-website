@@ -4,7 +4,6 @@ import { Magnetic } from '@/components/magnetic'
 
 export function Navbar() {
   const [visible, setVisible] = useState(true)
-  const [scrolled, setScrolled] = useState(false)
   const [active, setActive] = useState('')
   const [open, setOpen] = useState(false)
   const [lastY, setLastY] = useState(0)
@@ -12,7 +11,6 @@ export function Navbar() {
   useEffect(() => {
     function onScroll() {
       const y = window.scrollY
-      setScrolled(y > 60)
       setVisible(y < 60 || y < lastY)
       setLastY(y)
     }

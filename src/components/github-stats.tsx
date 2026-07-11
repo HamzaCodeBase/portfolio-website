@@ -60,7 +60,6 @@ export function GithubStats() {
                 <GitHubCalendar
                   username={GITHUB_USERNAME}
                   theme={theme}
-                  hideBorder
                   blockSize={12}
                   blockMargin={4}
                   fontSize={13}
