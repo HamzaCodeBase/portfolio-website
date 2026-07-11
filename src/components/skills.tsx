@@ -28,11 +28,8 @@ export function Skills() {
         </Reveal>
         <Reveal delay={0.05}>
           <h2 className="font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-            Technology <span className="gradient-text">constellation</span>
+            Skills & <span className="gradient-text">Technologies</span>
           </h2>
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
-            A curated map of technologies I work with daily across the stack.
-          </p>
         </Reveal>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

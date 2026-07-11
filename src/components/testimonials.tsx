@@ -14,7 +14,7 @@ export function Testimonials() {
         </Reveal>
         <Reveal delay={0.05}>
           <h2 className="font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-            What <span className="gradient-text">clients say</span>
+            <span className="gradient-text">Testimonials</span>
           </h2>
         </Reveal>
 

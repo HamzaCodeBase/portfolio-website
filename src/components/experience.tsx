@@ -14,11 +14,8 @@ export function Experience() {
         </Reveal>
         <Reveal delay={0.05}>
           <h2 className="font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-            Professional <span className="gradient-text">journey</span>
+            <span className="gradient-text">Experience</span>
           </h2>
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
-            Three years, one team, growing scope — from intern to full-stack developer.
-          </p>
         </Reveal>
 
         <div className="relative mt-16">

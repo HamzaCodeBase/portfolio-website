@@ -1,25 +1,32 @@
+// Requires: npm install react-github-calendar
+import { useEffect, useState } from 'react'
+import { GitHubCalendar } from 'react-github-calendar'
 import { Reveal, SectionIndicator } from '@/components/reveal'
-import { GITHUB_STATS, GITHUB_USERNAME, SOCIALS } from '@/lib/data'
+import { GITHUB_USERNAME, SOCIALS } from '@/lib/data'
 
-function seededRandom(seed: number) {
-  let s = seed
-  return () => {
-    s = (s * 1664525 + 1013904223) & 0xffffffff
-    return (s >>> 0) / 0xffffffff
-  }
-}
-
-function intensity(week: number, day: number) {
-  const rand = seededRandom(week * 100 + day * 7 + week * 3)
-  const v = rand()
-  if (v > 0.88) return 'bg-[#D97706]'
-  if (v > 0.72) return 'bg-[#D97706]/70'
-  if (v > 0.52) return 'bg-[#D97706]/40'
-  if (v > 0.30) return 'bg-[#D97706]/20'
-  return 'bg-white/5'
+const theme = {
+  dark: ['#161b22', '#3a2223', '#66333c', '#f43f5e', '#f97316'],
 }
 
 export function GithubStats() {
+  const [repos, setRepos] = useState<string | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}`)
+        const user = await res.json()
+        setRepos(`${user.public_repos}+`)
+      } catch {
+        setRepos('12+')
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchData()
+  }, [])
+
   return (
     <section className="section-padding">
       <div className="max-w-content">
@@ -28,18 +35,17 @@ export function GithubStats() {
         </Reveal>
         <Reveal delay={0.05}>
           <h2 className="font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-            GitHub <span className="gradient-text">activity</span>
+            <span className="gradient-text">GitHub</span>
           </h2>
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
-            A snapshot of contributions, repositories, and open-source momentum.
-          </p>
         </Reveal>
 
-        <div className="mt-12 grid gap-8 lg:grid-cols-2">
+        <div className="mt-12 grid gap-8 lg:grid-cols-[3fr_1fr]">
           <Reveal>
             <div className="rounded-2xl border-2 border-white/5 bg-white/[0.02] p-7 transition-all duration-500 hover:border-[#D97706] hover:shadow-[0_0_30px_rgba(217,119,6,0.35),0_0_60px_rgba(217,119,6,0.12)]">
               <div className="mb-6 flex items-center justify-between">
-                <span className="font-display text-base font-semibold text-foreground">Contribution Graph</span>
+                <h3 className="font-display text-base font-semibold text-foreground">
+                  Open Source Contributions
+                </h3>
                 <a
                   href={SOCIALS.github}
                   target="_blank"
@@ -50,38 +56,32 @@ export function GithubStats() {
                 </a>
               </div>
 
-              <div className="flex gap-1 overflow-x-auto pb-2">
-                {Array.from({ length: 28 }).map((_, week) => (
-                  <div key={week} className="flex flex-col gap-1">
-                    {Array.from({ length: 7 }).map((_, day) => (
-                      <span key={day} className={`h-3 w-3 rounded-sm ${intensity(week, day)}`} />
-                    ))}
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-4 flex items-center justify-end gap-1.5 text-xs text-muted-foreground">
-                <span>Less</span>
-                <span className="h-3 w-3 rounded-sm bg-white/5" />
-                <span className="h-3 w-3 rounded-sm bg-[#D97706]/20" />
-                <span className="h-3 w-3 rounded-sm bg-[#D97706]/40" />
-                <span className="h-3 w-3 rounded-sm bg-[#D97706]/70" />
-                <span className="h-3 w-3 rounded-sm bg-[#D97706]" />
-                <span>More</span>
+              <div className="flex justify-center overflow-x-auto px-2 pb-2">
+                <GitHubCalendar
+                  username={GITHUB_USERNAME}
+                  theme={theme}
+                  hideBorder
+                  blockSize={12}
+                  blockMargin={4}
+                  fontSize={13}
+                />
               </div>
             </div>
           </Reveal>
 
-          <div className="grid grid-cols-2 gap-4">
-            {GITHUB_STATS.map((stat, i) => (
-              <Reveal key={stat.label} delay={i * 0.05}>
-                <div className="rounded-2xl border-2 border-white/5 bg-white/[0.02] p-6 transition-all duration-500 hover:border-[#D97706] hover:shadow-[0_0_30px_rgba(217,119,6,0.35),0_0_60px_rgba(217,119,6,0.12)]">
-                  <p className="font-display text-2xl font-bold gradient-text-duo">{stat.value}</p>
-                  <p className="mt-1 text-sm text-muted-foreground">{stat.label}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal delay={0.1}>
+            {loading ? (
+              <div className="animate-pulse rounded-2xl border-2 border-white/5 bg-white/[0.02] p-6">
+                <div className="mb-2 h-7 w-20 rounded bg-white/10" />
+                <div className="h-4 w-28 rounded bg-white/5" />
+              </div>
+            ) : (
+              <div className="flex h-full flex-col items-center justify-center rounded-2xl border-2 border-white/5 bg-white/[0.02] p-6 transition-all duration-500 hover:border-[#D97706] hover:shadow-[0_0_30px_rgba(217,119,6,0.35),0_0_60px_rgba(217,119,6,0.12)]">
+                <p className="font-display text-3xl font-bold gradient-text-duo">{repos}</p>
+                <p className="mt-1 text-sm text-muted-foreground">Public repositories</p>
+              </div>
+            )}
+          </Reveal>
         </div>
       </div>
     </section>

@@ -175,19 +175,19 @@ export function Hero() {
               transition={{ duration: 0.6, delay: totalLetterDuration + 0.6, ease: [0.25, 0.1, 0.25, 1] }}
               className="mt-10 flex flex-wrap gap-4"
             >
-              <Magnetic as="a" href="#projects" strength={0.2}>
+              <a href="#projects">
                 <span className="group inline-flex items-center gap-2 rounded-2xl bg-[#D97706] px-8 py-4 font-semibold text-white transition-all hover:shadow-[0_0_40px_rgba(217,119,6,0.3)]">
                   Explore my work
                   <svg viewBox="0 0 16 16" fill="none" className="h-4 w-4 transition-transform group-hover:translate-x-1">
                     <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </span>
-              </Magnetic>
-              <Magnetic as="a" href="#contact" strength={0.2}>
-                <span className="inline-flex items-center gap-2 rounded-2xl border border-white/10 px-8 py-4 text-sm text-foreground transition-all hover:border-[#D97706]/30 hover:bg-white/5">
+              </a>
+              <a href="#contact">
+                <span className="group inline-flex items-center gap-2 rounded-2xl border border-white/10 px-8 py-4 font-semibold text-foreground transition-all hover:border-[#D97706] hover:shadow-[0_0_30px_rgba(217,119,6,0.35),0_0_60px_rgba(217,119,6,0.12)] hover:bg-white/5">
                   Get in touch
                 </span>
-              </Magnetic>
+              </a>
             </motion.div>
           </div>
 

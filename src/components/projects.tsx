@@ -13,15 +13,12 @@ export function Projects() {
     <section id="projects" className="section-padding">
       <div className="max-w-content">
         <Reveal>
-          <SectionIndicator label="Selected work" />
+          <SectionIndicator label="Projects" />
         </Reveal>
         <Reveal delay={0.05}>
           <h2 className="font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-            Featured <span className="gradient-text">projects</span>
+            <span className="gradient-text">Projects</span>
           </h2>
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
-            Production systems I&apos;ve built end-to-end, from architecture to deployment.
-          </p>
         </Reveal>
 
         <div className="mt-12 grid gap-8 md:grid-cols-2">

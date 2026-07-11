@@ -20,8 +20,7 @@ export function About() {
           <div>
             <Reveal>
               <h2 className="font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-                Building robust .NET systems{' '}
-                <span className="gradient-text">for production</span>
+                About <span className="gradient-text">Me</span>
               </h2>
             </Reveal>
 
