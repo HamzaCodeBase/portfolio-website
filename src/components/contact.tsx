@@ -6,7 +6,7 @@ import { SOCIALS } from '@/lib/data'
 const CHANNELS = [
   { icon: MailIcon, label: 'Email', value: SOCIALS.email, href: `mailto:${SOCIALS.email}` },
   { icon: LinkedinIcon, label: 'LinkedIn', value: '/in/hamzazafarg', href: SOCIALS.linkedin },
-  { icon: GithubIcon, label: 'GitHub', value: '@Hamza-Zafar-9', href: SOCIALS.github },
+  { icon: GithubIcon, label: 'GitHub', value: '@HamzaCodeBase', href: SOCIALS.github },
 ]
 
 export function Contact() {

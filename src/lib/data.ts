@@ -23,7 +23,7 @@ export const SOCIALS = {
   email: 'mhamzazafarg@gmail.com',
   phone: '+923081480093',
   linkedin: 'https://linkedin.com/in/hamzazafarg',
-  github: 'https://github.com/Hamza-Zafar-9',
+  github: 'https://github.com/HamzaCodeBase',
   upwork: 'https://www.upwork.com/freelancers/hamzazafar',
 }
 
