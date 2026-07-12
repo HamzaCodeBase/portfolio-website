@@ -23,7 +23,7 @@ export function Testimonials() {
           {TESTIMONIALS.map((t, i) => (
             <Reveal key={t.name} delay={i * 0.06}>
               <figure
-                className={`group flex h-full flex-col rounded-2xl border-2 p-7 transition-all duration-500 ${
+                className={`group flex h-full flex-col rounded-2xl border-2 p-5 transition-all duration-500 md:p-7 ${
                   active === i ? 'border-[#D97706]/30 bg-[#D97706]/[0.03]' : 'border-white/5 bg-white/[0.02]'
                 } hover:border-[#D97706] hover:shadow-[0_0_30px_rgba(217,119,6,0.35),0_0_60px_rgba(217,119,6,0.12)]`}
                 onMouseEnter={() => setActive(i)}
@@ -55,7 +55,7 @@ export function Testimonials() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -30 }}
               transition={{ duration: 0.3 }}
-              className="flex flex-col rounded-2xl border-2 border-white/5 bg-white/[0.02] p-7 transition-all duration-500 hover:border-[#D97706] hover:shadow-[0_0_30px_rgba(217,119,6,0.35),0_0_60px_rgba(217,119,6,0.12)]"
+              className="flex flex-col rounded-2xl border-2 border-white/5 bg-white/[0.02] p-5 transition-all duration-500 hover:border-[#D97706] hover:shadow-[0_0_30px_rgba(217,119,6,0.35),0_0_60px_rgba(217,119,6,0.12)] md:p-7"
             >
               <span className="font-display text-5xl leading-none gradient-text">&ldquo;</span>
               <blockquote className="-mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">

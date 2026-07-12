@@ -61,14 +61,14 @@
 
 @layer base {
   * { @apply border-border outline-ring/50; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; overflow-x: hidden; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.06) transparent; }
   body {
     @apply bg-[#09090B] text-[#F1F1F3] font-sans antialiased;
     font-size: 16px;
     line-height: 1.7;
   }
   ::selection { background: rgba(217, 119, 6, 0.3); }
-  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.06); border-radius: 3px; }
   :focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 6px; }
@@ -184,5 +184,5 @@
   &:hover { animation-play-state: paused; }
 }
 
-@utility section-padding { @apply px-6 py-16 md:py-20; }
+@utility section-padding { @apply px-6 py-14 md:py-20; }
 @utility max-w-content { @apply mx-auto max-w-7xl; }

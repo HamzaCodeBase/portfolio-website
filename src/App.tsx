@@ -6,7 +6,6 @@ import { Projects } from '@/components/projects'
 import { Experience } from '@/components/experience'
 import { Education } from '@/components/education'
 import { GithubStats } from '@/components/github-stats'
-import { Testimonials } from '@/components/testimonials'
 import { Contact } from '@/components/contact'
 import { Footer } from '@/components/footer'
 import { CursorGlow } from '@/components/cursor-glow'
@@ -22,15 +21,17 @@ export default function App() {
       <ScrollProgress />
       <Navbar />
       <main style={{ perspective: '1200px' }}>
-        <Hero />
-        <SectionReveal><About /></SectionReveal>
-        <SectionReveal><Skills /></SectionReveal>
-        <SectionReveal><Projects /></SectionReveal>
-        <SectionReveal><Experience /></SectionReveal>
-        <SectionReveal><Education /></SectionReveal>
-        <SectionReveal><GithubStats /></SectionReveal>
-        <SectionReveal><Testimonials /></SectionReveal>
-        <SectionReveal><Contact /></SectionReveal>
+        <div className="overflow-x-hidden">
+          <Hero />
+          <SectionReveal><About /></SectionReveal>
+          <SectionReveal><Skills /></SectionReveal>
+          <SectionReveal><Projects /></SectionReveal>
+          <SectionReveal><Experience /></SectionReveal>
+          <SectionReveal><Education /></SectionReveal>
+          <SectionReveal><GithubStats /></SectionReveal>
+          {/* <SectionReveal><Testimonials /></SectionReveal> */}
+          <SectionReveal><Contact /></SectionReveal>
+        </div>
       </main>
       <Footer />
     </div>

@@ -34,7 +34,7 @@ export function About() {
 
             {/* Stats row */}
             <Reveal delay={0.15}>
-              <div className="mt-12 grid grid-cols-3 gap-8 border-t border-white/5 pt-10">
+              <div className="mt-10 grid grid-cols-3 gap-4 border-t border-white/5 pt-8 md:mt-12 md:gap-8 md:pt-10">
                 {counterItems.map((item) => (
                   <div key={item.label}>
                     <p className="font-display text-3xl font-bold gradient-text-duo">{item.value}</p>
@@ -49,8 +49,9 @@ export function About() {
           <div className="lg:pl-8">
             <Reveal delay={0.08}>
               <div className="relative">
-                {/* Photo placeholder */}
-                <div className="aspect-[3/4] w-full overflow-hidden rounded-2xl border border-white/5 bg-gradient-to-br from-[#D97706]/10 to-[#E11D48]/10">
+                {/* Photo */}
+                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl border border-white/5 bg-gradient-to-br from-[#D97706]/10 to-[#E11D48]/10">
+                  {/* Fallback: SVG placeholder */}
                   <div className="flex h-full items-center justify-center">
                     <div className="text-center">
                       <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#D97706]/10">
@@ -61,6 +62,13 @@ export function About() {
                       <p className="mt-4 text-sm text-muted-foreground">Photo placeholder</p>
                     </div>
                   </div>
+                  {/* Foreground: photo — hides SVG when loaded */}
+                  <img
+                    src="/images/photo.png"
+                    alt="Hamza Zafar"
+                    className="absolute inset-0 z-10 h-full w-full object-cover"
+                    onError={(e) => { e.currentTarget.style.display = 'none' }}
+                  />
                 </div>
 
                 {/* Floating fact card */}
@@ -84,7 +92,7 @@ export function About() {
             <Reveal delay={0.12}>
               <div className="mt-6 divide-y divide-white/5 rounded-2xl border-2 border-white/5 bg-white/[0.02] transition-all duration-500 hover:border-[#D97706] hover:shadow-[0_0_30px_rgba(217,119,6,0.35),0_0_60px_rgba(217,119,6,0.12)]">
                 {ABOUT_FACTS.map((fact) => (
-                  <div key={fact.label} className="flex items-center justify-between gap-4 px-6 py-4">
+                  <div key={fact.label} className="flex items-center justify-between gap-4 px-4 py-3 md:px-6 md:py-4">
                     <span className="text-sm text-muted-foreground">{fact.label}</span>
                     <span className="text-right text-sm font-medium text-foreground">{fact.value}</span>
                   </div>
@@ -108,7 +116,7 @@ export function About() {
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {WHAT_I_DO.map((item, i) => (
               <Reveal key={item.title} delay={i * 0.05}>
-                <div className="group h-full rounded-2xl border-2 border-white/5 bg-[#09090B] p-8 transition-all duration-500 hover:border-[#D97706] hover:shadow-[0_0_30px_rgba(217,119,6,0.35),0_0_60px_rgba(217,119,6,0.12)]">
+                <div className="group h-full rounded-2xl border-2 border-white/5 bg-[#09090B] p-6 transition-all duration-500 hover:border-[#D97706] hover:shadow-[0_0_30px_rgba(217,119,6,0.35),0_0_60px_rgba(217,119,6,0.12)] md:p-8">
                   <span className="font-mono text-xs text-[#D97706]/50">{String(i + 1).padStart(2, '0')}</span>
                   <h4 className="mt-4 font-display text-lg font-semibold text-foreground">{item.title}</h4>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</p>

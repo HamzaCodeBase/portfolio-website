@@ -20,7 +20,7 @@ export function Experience() {
 
         <div className="relative mt-16">
           {/* Timeline line */}
-          <div className="absolute left-[31px] top-0 bottom-0 w-px bg-gradient-to-b from-[#D97706]/40 via-[#F59E0B]/20 to-transparent" />
+          <div className="absolute left-[23px] top-0 bottom-0 w-px bg-gradient-to-b from-[#D97706]/40 via-[#F59E0B]/20 to-transparent md:left-[31px]" />
 
           <div className="space-y-12">
             {EXPERIENCE.map((job, i) => (
@@ -40,10 +40,10 @@ function ExperienceCard({ job, index }: { job: typeof EXPERIENCE[0]; index: numb
   const color = ACCENTS[index % ACCENTS.length]
 
   return (
-    <div className="relative pl-16">
+    <div className="relative pl-12 md:pl-16">
       {/* Timeline dot */}
       <motion.div
-        className="absolute left-[21px] top-2"
+        className="absolute left-[17px] top-2 md:left-[21px]"
         initial={{ scale: 0 }}
         whileInView={{ scale: 1 }}
         viewport={{ once: true }}
@@ -56,7 +56,7 @@ function ExperienceCard({ job, index }: { job: typeof EXPERIENCE[0]; index: numb
 
       {/* Card */}
       <motion.div
-        className="rounded-2xl border-2 border-white/5 bg-white/[0.02] p-7 transition-all duration-500 hover:border-[#D97706] hover:shadow-[0_0_30px_rgba(217,119,6,0.35),0_0_60px_rgba(217,119,6,0.12)]"
+        className="rounded-2xl border-2 border-white/5 bg-white/[0.02] p-5 transition-all duration-500 hover:border-[#D97706] hover:shadow-[0_0_30px_rgba(217,119,6,0.35),0_0_60px_rgba(217,119,6,0.12)] md:p-7"
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}

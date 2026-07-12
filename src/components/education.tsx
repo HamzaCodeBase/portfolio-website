@@ -47,10 +47,10 @@ export function Education() {
           </h2>
         </Reveal>
 
-        <div className="mt-12 grid gap-8 lg:grid-cols-[1.2fr_1fr]">
+        <div className="mt-12 grid gap-6 lg:grid-cols-[1.2fr_1fr] lg:gap-8">
           <div className="grid gap-5">
             <Reveal>
-              <div className="group relative overflow-hidden rounded-2xl border-2 border-white/5 bg-white/[0.02] p-7 transition-all duration-500 hover:border-[#D97706] hover:shadow-[0_0_30px_rgba(217,119,6,0.35),0_0_60px_rgba(217,119,6,0.12)]">
+              <div className="group relative overflow-hidden rounded-2xl border-2 border-white/5 bg-white/[0.02] p-5 transition-all duration-500 hover:border-[#D97706] hover:shadow-[0_0_30px_rgba(217,119,6,0.35),0_0_60px_rgba(217,119,6,0.12)] md:p-7">
                 <div className="absolute -top-12 -right-12 h-40 w-40 rounded-full bg-[#D97706]/5 blur-3xl transition-all duration-500 group-hover:bg-[#D97706]/10" />
                 <div className="relative">
                   <div className="flex items-center gap-3">
@@ -59,8 +59,8 @@ export function Education() {
                     </span>
                     <span className="font-mono text-xs text-muted-foreground">{EDUCATION.period}</span>
                   </div>
-                  <h3 className="mt-4 font-display text-xl font-bold text-foreground">{EDUCATION.degree}</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">{EDUCATION.school}</p>
+                  <h3 className="mt-4 font-display text-lg font-bold text-foreground md:text-xl">{EDUCATION.degree}</h3>
+                  <p className="mt-1 text-xs text-muted-foreground md:text-sm">{EDUCATION.school}</p>
                   <div className="mt-6 flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.02] p-4">
                     <span className="font-display text-4xl font-bold gradient-text-duo">{EDUCATION.gpa}</span>
                     <div className="text-right">
@@ -113,8 +113,8 @@ export function Education() {
                     )}
                   </span>
                   <div className="flex-1 min-w-0">
-                    <span className="block text-sm font-medium text-foreground truncate transition-colors group-hover:text-[#D97706]">{cert.name}</span>
-                    <span className="block mt-0.5 text-xs text-muted-foreground truncate">{cert.issuer}</span>
+                    <span className="block text-sm font-medium text-foreground transition-colors group-hover:text-[#D97706]">{cert.name}</span>
+                    <span className="block mt-0.5 text-xs text-muted-foreground">{cert.issuer}</span>
                   </div>
                   <svg viewBox="0 0 16 16" fill="none" className="h-3 w-3 shrink-0 text-muted-foreground/30 transition-all group-hover:translate-x-0.5 group-hover:text-[#D97706]">
                     <path d="M6 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

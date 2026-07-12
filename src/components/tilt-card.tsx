@@ -1,4 +1,5 @@
 import { useEffect, useState, type ReactNode, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 
 type TiltCardProps = {
@@ -81,7 +82,7 @@ export function Modal({ open, onClose, children }: ModalProps) {
     return () => window.removeEventListener('keydown', onKey)
   }, [open, onClose])
 
-  return (
+  return createPortal(
     <AnimatePresence>
       {open && (
         <motion.div
@@ -112,7 +113,8 @@ export function Modal({ open, onClose, children }: ModalProps) {
           </motion.div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   )
 }
 

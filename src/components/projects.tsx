@@ -29,7 +29,7 @@ export function Projects() {
               <article className="group flex h-full flex-col overflow-hidden rounded-2xl border-2 border-white/5 bg-white/[0.02] transition-all duration-500 hover:border-[#D97706] hover:shadow-[0_0_30px_rgba(217,119,6,0.35),0_0_60px_rgba(217,119,6,0.12)]">
                   <div className="h-1.5 w-full" style={{ background: `linear-gradient(90deg, ${accent}, ${accent}88, transparent)` }} />
 
-                  <div className="flex flex-1 flex-col p-6">
+                  <div className="flex flex-1 flex-col p-5 md:p-6">
                     <div className="flex items-start justify-between gap-3">
                       <div>
                         <div className="flex items-center gap-2">
@@ -52,14 +52,14 @@ export function Projects() {
 
                     <p className="mt-4 text-sm leading-relaxed text-muted-foreground line-clamp-2">{project.summary}</p>
 
-                    <div className="mt-auto flex flex-nowrap gap-1.5 overflow-x-auto pt-4 [&::-webkit-scrollbar]:hidden">
+                    <div className="mt-auto flex flex-wrap gap-1.5 pt-4">
                       {project.tech.slice(0, 5).map((tag) => (
-                          <span key={tag} className="shrink-0 rounded-lg border border-white/5 bg-white/[0.02] px-2.5 py-1 font-mono text-xs text-muted-foreground">
+                          <span key={tag} className="rounded-lg border border-white/5 bg-white/[0.02] px-2.5 py-1 font-mono text-xs text-muted-foreground">
                             {tag}
                           </span>
                         ))}
                         {project.tech.length > 5 && (
-                          <span className="shrink-0 rounded-lg border border-white/5 bg-white/[0.02] px-2.5 py-1 font-mono text-xs text-muted-foreground">
+                          <span className="rounded-lg border border-white/5 bg-white/[0.02] px-2.5 py-1 font-mono text-xs text-muted-foreground">
                           +{project.tech.length - 5}
                         </span>
                       )}

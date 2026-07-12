@@ -63,9 +63,9 @@ export function Hero() {
       </svg>
 
       {/* Lighting orbs — auto-drift + mouse follow */}
-      <div className="animate-float-slow pointer-events-none absolute -top-1/4 -right-1/4">
+          <div className="animate-float-slow pointer-events-none absolute -top-1/4 -right-1/2 md:-right-1/4">
         <div
-          className="h-[600px] w-[600px] rounded-full opacity-20 blur-[150px]"
+          className="h-[300px] w-[300px] rounded-full opacity-20 blur-[100px] md:h-[600px] md:w-[600px] md:blur-[150px]"
           style={{
             background: `radial-gradient(circle, rgba(217,119,6,0.4), transparent)`,
             transform: `translate(${(mousePos.x - 0.5) * -30}px, ${(mousePos.y - 0.5) * -30}px)`,
@@ -73,9 +73,9 @@ export function Hero() {
           }}
         />
       </div>
-      <div className="animate-float-slow pointer-events-none absolute -bottom-1/4 -left-1/4" style={{ animationDelay: '-4s' }}>
+      <div className="animate-float-slow pointer-events-none absolute -bottom-1/4 -left-1/2 md:-left-1/4" style={{ animationDelay: '-4s' }}>
         <div
-          className="h-[500px] w-[500px] rounded-full opacity-15 blur-[120px]"
+          className="h-[250px] w-[250px] rounded-full opacity-15 blur-[80px] md:h-[500px] md:w-[500px] md:blur-[120px]"
           style={{
             background: `radial-gradient(circle, rgba(225,29,72,0.4), transparent)`,
             transform: `translate(${(mousePos.x - 0.5) * 30}px, ${(mousePos.y - 0.5) * 30}px)`,
@@ -102,7 +102,7 @@ export function Hero() {
             </motion.div>
 
             {/* Letter-by-letter heading */}
-            <h1 className="whitespace-nowrap font-display text-5xl font-bold leading-[1.04] tracking-tight sm:text-7xl md:text-8xl lg:text-7xl xl:text-9xl">
+            <h1 className="font-display text-4xl font-bold leading-[1.04] tracking-tight sm:text-7xl md:text-8xl lg:text-7xl xl:text-8xl">
               {nameChars.map((char, i) => (
                 <motion.span
                   key={i}
@@ -233,13 +233,13 @@ export function Hero() {
             transition={{ duration: 0.7, delay: totalLetterDuration + 0.8, ease: [0.25, 0.1, 0.25, 1] }}
             className="mt-16"
           >
-            <div className="grid grid-cols-3 gap-6 rounded-2xl border border-white/5 bg-white/[0.02] p-8 text-center md:flex md:justify-center md:gap-16">
+            <div className="grid grid-cols-3 gap-3 rounded-2xl border border-white/5 bg-white/[0.02] p-4 text-center md:flex md:justify-center md:gap-16 md:p-8">
               {HERO_STATS.map((stat) => (
                 <div key={stat.label}>
-                  <p className="font-display text-3xl font-bold gradient-text-duo sm:text-4xl">
+                  <p className="font-display text-2xl font-bold gradient-text-duo sm:text-4xl">
                     {stat.value}
                   </p>
-                  <p className="mt-1 text-xs text-muted-foreground sm:text-sm">{stat.label}</p>
+                  <p className="mt-1 text-[10px] text-muted-foreground leading-tight sm:text-sm">{stat.label}</p>
                 </div>
               ))}
             </div>

@@ -6,7 +6,7 @@ import { SOCIALS } from '@/lib/data'
 const CHANNELS = [
   { icon: MailIcon, label: 'Email', value: SOCIALS.email, href: `mailto:${SOCIALS.email}` },
   { icon: LinkedinIcon, label: 'LinkedIn', value: '/in/hamzazafarg', href: SOCIALS.linkedin },
-  { icon: GithubIcon, label: 'GitHub', value: '@HamzaCodeBase', href: SOCIALS.github },
+  { icon: GithubIcon, label: 'GitHub', value: '@Hamza-Zafar-9', href: SOCIALS.github },
 ]
 
 export function Contact() {
@@ -53,11 +53,11 @@ export function Contact() {
     <section id="contact" className="relative overflow-hidden section-padding bg-[#0C0C10]">
       {/* Ambient orbs */}
       <div className="pointer-events-none absolute -top-1/3 -right-1/4">
-        <div className="h-[500px] w-[500px] rounded-full opacity-15 blur-[140px]"
+        <div className="h-[300px] w-[300px] rounded-full opacity-15 blur-[100px] md:h-[500px] md:w-[500px] md:blur-[140px]"
           style={{ background: 'radial-gradient(circle, rgba(217,119,6,0.3), transparent)' }} />
       </div>
       <div className="pointer-events-none absolute -bottom-1/3 -left-1/4">
-        <div className="h-[400px] w-[400px] rounded-full opacity-10 blur-[120px]"
+        <div className="h-[250px] w-[250px] rounded-full opacity-10 blur-[80px] md:h-[400px] md:w-[400px] md:blur-[120px]"
           style={{ background: 'radial-gradient(circle, rgba(225,29,72,0.25), transparent)' }} />
       </div>
 
@@ -69,17 +69,17 @@ export function Contact() {
           <h2 className="font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
             <span className="gradient-text">Contact</span>
           </h2>
-            <p className="mt-4 text-base leading-relaxed text-muted-foreground whitespace-nowrap">
-              Have a <span className="text-[#D97706]">project</span>, an <span className="text-[#D97706]">MVP idea</span>, or a <span className="text-[#D97706]">role</span> in mind? Reach out and I&rsquo;ll get back within <span className="text-[#D97706]">1-4</span> Hours.
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
+              Have a <span className="text-[#D97706]">project</span>, an <span className="text-[#D97706]">MVP idea</span>, or a <span className="text-[#D97706]">role</span> in mind? Reach out and I&rsquo;ll get back within <span className="text-[#D97706]">1-4</span> hours.
             </p>
         </Reveal>
 
-        <div className="mt-12 grid gap-8 lg:grid-cols-[1fr_1.3fr]">
+        <div className="mt-12 grid gap-6 lg:grid-cols-[1fr_1.3fr] lg:gap-8">
           {/* Left: Contact info */}
           <Reveal>
-            <div className="flex h-full flex-col rounded-2xl border-2 border-white/5 bg-white/[0.02] p-8 transition-all duration-500 hover:border-[#D97706] hover:shadow-[0_0_30px_rgba(217,119,6,0.35),0_0_60px_rgba(217,119,6,0.12)]">
+            <div className="flex h-full flex-col rounded-2xl border-2 border-white/5 bg-white/[0.02] p-4 transition-all duration-500 hover:border-[#D97706] hover:shadow-[0_0_30px_rgba(217,119,6,0.35),0_0_60px_rgba(217,119,6,0.12)] md:p-8">
               {/* Availability badge */}
-              <div className="mb-8 inline-flex items-center gap-2.5 self-center rounded-full border border-emerald-500/10 bg-emerald-500/5 px-4 py-2">
+              <div className="mb-4 inline-flex items-center gap-2 self-center rounded-full border border-emerald-500/10 bg-emerald-500/5 px-3 py-1.5 md:mb-8 md:gap-2.5 md:px-4 md:py-2">
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
@@ -95,9 +95,9 @@ export function Contact() {
                     href={c.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center gap-4 rounded-xl px-4 py-3.5 transition-all hover:bg-[#D97706]/5"
+                    className="group flex items-center gap-2 rounded-xl px-3 py-2.5 transition-all hover:bg-[#D97706]/5 md:gap-4 md:px-4 md:py-3.5"
                   >
-                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/5 text-muted-foreground transition-all group-hover:bg-[#D97706]/15 group-hover:text-[#D97706] group-hover:shadow-[0_0_20px_rgba(217,119,6,0.15)]">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/5 text-muted-foreground transition-all group-hover:bg-[#D97706]/15 group-hover:text-[#D97706] group-hover:shadow-[0_0_20px_rgba(217,119,6,0.15)] md:h-11 md:w-11">
                       <c.icon className="h-4.5 w-4.5" />
                     </span>
                     <div className="flex-1">
@@ -111,7 +111,7 @@ export function Contact() {
                 ))}
               </div>
 
-              <div className="mt-auto pt-8">
+              <div className="mt-auto pt-4 md:pt-8">
                 <p className="text-xs text-muted-foreground/60">
                   Or email directly at{' '}
                   <a href={`mailto:${SOCIALS.email}`} className="text-[#D97706] transition-colors hover:text-[#D97706]/80">
@@ -124,8 +124,8 @@ export function Contact() {
 
           {/* Right: Form */}
           <Reveal delay={0.08}>
-            <form onSubmit={handleSubmit} noValidate className="rounded-2xl border-2 border-white/5 bg-white/[0.02] p-8 transition-all duration-500 hover:border-[#D97706] hover:shadow-[0_0_30px_rgba(217,119,6,0.35),0_0_60px_rgba(217,119,6,0.12)]">
-              <div className="grid gap-5">
+            <form onSubmit={handleSubmit} noValidate className="rounded-2xl border-2 border-white/5 bg-white/[0.02] p-4 transition-all duration-500 hover:border-[#D97706] hover:shadow-[0_0_30px_rgba(217,119,6,0.35),0_0_60px_rgba(217,119,6,0.12)] md:p-8">
+              <div className="grid gap-3 md:gap-5">
                 {(['name', 'email', 'details'] as const).map((field) => (
                   <div key={field} className="grid gap-1.5">
                     <label htmlFor={field} className="text-xs font-medium tracking-wider text-muted-foreground/60 uppercase">
@@ -145,7 +145,7 @@ export function Contact() {
                           onFocus={() => setFocusField(field)}
                           onBlur={() => { setFocusField(null); handleBlur(field) }}
                           placeholder={`Your ${field === 'email' ? 'email address' : 'name'}`}
-                          className="w-full rounded-xl border bg-white/5 px-4 py-3.5 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground/30"
+                          className="w-full rounded-xl border bg-white/5 px-4 py-2.5 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground/30 md:py-3.5"
                           style={{
                             borderColor: focusField === field ? '#D97706' : errors[field] ? '#EF4444' : 'rgba(255,255,255,0.08)',
                             boxShadow: focusField === field ? '0 0 0 1px #D97706, 0 0 25px rgba(217,119,6,0.08)' : 'none',
@@ -155,13 +155,13 @@ export function Contact() {
                         <textarea
                           id={field}
                           name={field}
-                          rows={4}
+                          rows={3}
                           value={details}
                           onChange={(e) => setDetails(e.target.value)}
                           onFocus={() => setFocusField(field)}
                           onBlur={() => { setFocusField(null); handleBlur(field) }}
                           placeholder="Tell me about your project, idea, or the role you have in mind..."
-                          className="w-full resize-none rounded-xl border bg-white/5 px-4 py-3.5 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground/30"
+                          className="w-full resize-none rounded-xl border bg-white/5 px-4 py-2.5 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground/30 md:py-3.5"
                           style={{
                             borderColor: focusField === field ? '#D97706' : errors[field] ? '#EF4444' : 'rgba(255,255,255,0.08)',
                             boxShadow: focusField === field ? '0 0 0 1px #D97706, 0 0 25px rgba(217,119,6,0.08)' : 'none',
@@ -184,7 +184,7 @@ export function Contact() {
                 <button
                   type="submit"
                   disabled={touched.name || touched.email || touched.details ? !isValid : false}
-                  className="group mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-[#D97706] px-6 py-3.5 font-semibold text-white transition-all hover:shadow-[0_0_35px_rgba(217,119,6,0.3)] disabled:cursor-not-allowed disabled:opacity-50"
+                  className="group mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-[#D97706] px-6 py-2.5 font-semibold text-white transition-all hover:shadow-[0_0_35px_rgba(217,119,6,0.3)] disabled:cursor-not-allowed disabled:opacity-50 md:py-3.5"
                 >
                   {sent ? (
                     <span className="inline-flex items-center gap-2">

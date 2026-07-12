@@ -27,7 +27,7 @@ export const SOCIALS = {
   upwork: 'https://www.upwork.com/freelancers/hamzazafar',
 }
 
-export const GITHUB_USERNAME = 'Hamza-Zafar-9'
+export const GITHUB_USERNAME = 'HamzaCodeBase'
 
 export const HERO_STATS = [
   { value: '3+', label: 'Years building .NET Solutions' },
@@ -127,7 +127,7 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'Eventio',
+    name: 'Event Management Platform',
     type: 'Full-stack SaaS · Blazor Server',
     summary:
       'A full-stack event management platform where organizers create, promote, and manage events while attendees register, purchase tickets, and receive real-time updates. Built end-to-end on Blazor Server with a layered Controller–Service–Repository architecture, featuring server-side rendering for low-latency interactivity and SignalR-powered real-time notifications.',
@@ -144,7 +144,7 @@ export const PROJECTS: Project[] = [
     tech: ['.NET 8', 'Blazor Server', 'Auth0', 'Stripe', 'OpenAI API', 'MySQL', 'Azure', 'GitHub Actions', 'Sentry'],
   },
   {
-    name: 'Jackrabbit',
+    name: 'Class Management System',
     type: 'System modernization · .NET 8',
     accent: '#E11D48',
     summary:
@@ -161,7 +161,7 @@ export const PROJECTS: Project[] = [
     tech: ['.NET 8', '.NET Framework 4.8', 'ASP.NET Core MVC', 'EF Core', 'SQL Server', '.NET Upgrade Assistant', 'xUnit'],
   },
   {
-    name: 'EventCombo',
+    name: 'Event Registration API',
     type: 'Backend · ASP.NET Core Web API',
     summary:
       'Backend feature development for an event management platform, focused on event CRUD workflows, bulk attendee registrations, user profile management, and reporting endpoints. The API served an AngularJS frontend and required careful query optimization for registration-heavy payloads.',
@@ -177,7 +177,7 @@ export const PROJECTS: Project[] = [
     tech: ['.NET 8', 'ASP.NET Core Web API', 'MediatR', 'SQL Server', 'AngularJS', 'EF Core', 'FluentValidation'],
   },
   {
-    name: 'Enwage',
+    name: 'Automated Test Suite',
     type: 'Test engineering · xUnit',
     summary:
       'Architected a comprehensive xUnit testing suite for ASP.NET Core backend services, covering service-layer logic, validation pipelines, and integration scenarios. The suite was designed to run in CI and catch regressions early, using Moq for dependency isolation and FluentAssertions for readable assertions.',
@@ -193,7 +193,7 @@ export const PROJECTS: Project[] = [
     tech: ['C#', '.NET 8', 'xUnit', 'Moq', 'FluentAssertions', 'EF Core InMemory', 'GitHub Actions'],
   },
   {
-    name: 'POS System',
+    name: 'Point of Sale System',
     type: 'Full-stack · Angular + .NET 8',
     summary:
       'A real-time Point of Sale system for retail stores with multi-terminal support, inventory tracking, and live order notifications. Built with Angular for the POS frontend and ASP.NET Core Web API for backend operations, deployed on a Windows VM with IIS. SignalR pushes order updates and inventory changes across all active terminals in real time.',
@@ -210,7 +210,7 @@ export const PROJECTS: Project[] = [
     tech: ['.NET 8', 'Angular', 'ASP.NET Core Web API', 'SignalR', 'EF Core', 'SQL Server', 'IIS', 'Windows VM'],
   },
   {
-    name: 'Findd',
+    name: 'Background Job Engine',
     type: 'Background processing · .NET 6',
     summary:
       'Implemented a background job engine using .NET IHostedService to automate recurring data synchronization, report generation, and system cleanup tasks. The engine supported cron expressions for scheduling, retry policies with exponential backoff, and structured logging for observability.',
