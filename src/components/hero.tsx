@@ -10,6 +10,9 @@ const ROLES = [
   'Backend Engineer',
   'Blazor Developer',
   'React Engineer',
+  'Redux & Context API',
+  'React Hooks',
+  'TypeScript Specialist',
   'Azure Specialist',
   'Clean Architecture',
   'System Design',
@@ -207,11 +210,11 @@ export function Hero() {
           >
             <div className="flex w-max animate-marquee gap-2">
               {[
-                'ASP.NET Core', 'Blazor', 'React', 'Azure', 'SQL Server', 'Docker', 'GraphQL',
+                'ASP.NET Core', 'Blazor', 'React', 'Redux', 'Context API', 'React Hooks', 'Azure', 'SQL Server', 'Docker', 'GraphQL',
                 'C#', 'TypeScript', 'JavaScript', 'PostgreSQL', 'MongoDB', 'Redis', 'SignalR',
                 'Entity Framework Core', 'MediatR', 'FluentValidation', 'xUnit', 'Auth0', 'Stripe',
                 'GitHub Actions', 'IIS', 'Serilog', 'Sentry', 'SonarQube', 'Docker', 'Kestrel',
-                'ASP.NET Core', 'Blazor', 'React', 'Azure', 'SQL Server', 'Docker', 'GraphQL',
+                'ASP.NET Core', 'Blazor', 'React', 'Redux', 'Context API', 'React Hooks', 'Azure', 'SQL Server', 'Docker', 'GraphQL',
                 'C#', 'TypeScript', 'JavaScript', 'PostgreSQL', 'MongoDB', 'Redis', 'SignalR',
                 'Entity Framework Core', 'MediatR', 'FluentValidation', 'xUnit', 'Auth0', 'Stripe',
                 'GitHub Actions', 'IIS', 'Serilog', 'Sentry', 'SonarQube', 'Docker', 'Kestrel',

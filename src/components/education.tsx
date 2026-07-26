@@ -57,7 +57,6 @@ export function Education() {
                     <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#D97706]/10 text-[#D97706]">
                       <GraduationCap className="h-5 w-5" />
                     </span>
-                    <span className="font-mono text-xs text-muted-foreground">{EDUCATION.period}</span>
                   </div>
                   <h3 className="mt-4 font-display text-lg font-bold text-foreground md:text-xl">{EDUCATION.degree}</h3>
                   <p className="mt-1 text-xs text-muted-foreground md:text-sm">{EDUCATION.school}</p>

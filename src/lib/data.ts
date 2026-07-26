@@ -1,13 +1,13 @@
 export const PROFILE = {
   name: 'Hamza Zafar',
   title: '.NET Full Stack Developer',
-  tagline: '.NET · C# · React · Blazor',
+  tagline: '.NET  |  C#  |  React  |  Blazor',
   location: 'Multan, Pakistan',
   email: 'mhamzazafarg@gmail.com',
   phone: '+92 308 1480093',
   yearsExperience: '3+',
   currentRole: '.NET Full Stack Developer',
-  currentCompany: 'Technovez',
+  currentCompany: 'Technovient Solutions',
 }
 
 export const NAV_LINKS = [
@@ -128,7 +128,7 @@ export type Project = {
 export const PROJECTS: Project[] = [
   {
     name: 'Event Management Platform',
-    type: 'Full-stack SaaS · Blazor Server',
+    type: 'Full-stack SaaS  |  Blazor Server',
     summary:
       'A full-stack event management platform where organizers create, promote, and manage events while attendees register, purchase tickets, and receive real-time updates. Built end-to-end on Blazor Server with a layered Controller–Service–Repository architecture, featuring server-side rendering for low-latency interactivity and SignalR-powered real-time notifications.',
     contributions: [
@@ -145,7 +145,7 @@ export const PROJECTS: Project[] = [
   },
   {
     name: 'Class Management System',
-    type: 'System modernization · .NET 8',
+    type: 'System modernization  |  .NET 8',
     accent: '#E11D48',
     summary:
       'Modernized a legacy Class Management System from .NET Framework 4.8 to .NET 8, migrating from Web Forms to ASP.NET Core MVC. The project involved incrementally replacing monolithic System.Web components with modern middleware, restructuring the data layer to EF Core, and ensuring full feature parity throughout the migration.',
@@ -162,7 +162,7 @@ export const PROJECTS: Project[] = [
   },
   {
     name: 'Event Registration API',
-    type: 'Backend · ASP.NET Core Web API',
+    type: 'Backend  |  ASP.NET Core Web API',
     summary:
       'Backend feature development for an event management platform, focused on event CRUD workflows, bulk attendee registrations, user profile management, and reporting endpoints. The API served an AngularJS frontend and required careful query optimization for registration-heavy payloads.',
     contributions: [
@@ -178,7 +178,7 @@ export const PROJECTS: Project[] = [
   },
   {
     name: 'Automated Test Suite',
-    type: 'Test engineering · xUnit',
+    type: 'Test engineering  |  xUnit',
     summary:
       'Architected a comprehensive xUnit testing suite for ASP.NET Core backend services, covering service-layer logic, validation pipelines, and integration scenarios. The suite was designed to run in CI and catch regressions early, using Moq for dependency isolation and FluentAssertions for readable assertions.',
     contributions: [
@@ -194,7 +194,7 @@ export const PROJECTS: Project[] = [
   },
   {
     name: 'Point of Sale System',
-    type: 'Full-stack · Angular + .NET 8',
+    type: 'Full-stack  |  Angular + .NET 8',
     summary:
       'A real-time Point of Sale system for retail stores with multi-terminal support, inventory tracking, and live order notifications. Built with Angular for the POS frontend and ASP.NET Core Web API for backend operations, deployed on a Windows VM with IIS. SignalR pushes order updates and inventory changes across all active terminals in real time.',
     contributions: [
@@ -211,7 +211,7 @@ export const PROJECTS: Project[] = [
   },
   {
     name: 'Background Job Engine',
-    type: 'Background processing · .NET 6',
+    type: 'Background processing  |  .NET 6',
     summary:
       'Implemented a background job engine using .NET IHostedService to automate recurring data synchronization, report generation, and system cleanup tasks. The engine supported cron expressions for scheduling, retry policies with exponential backoff, and structured logging for observability.',
     contributions: [
@@ -224,6 +224,40 @@ export const PROJECTS: Project[] = [
     outcome:
       'Maintained clean separation of concerns between background tasks and core application logic, with zero missed schedules over 6 months of production runtime. The retry pipeline recovered from 95% of transient failures automatically.',
     tech: ['.NET 6', 'IHostedService', 'Cronos', 'Polly', 'Serilog', 'EF Core', 'Application Insights'],
+  },
+  {
+    name: 'Smart Voice Agent',
+    type: 'AI assistant  |  ASP.NET Core + Next.js',
+    summary:
+      'An AI-powered voice assistant that handles scheduling, Q&A, and task automation through natural language. The backend orchestrates Telnyx for telephony, PostgreSQL with pgvector for RAG-based knowledge retrieval, and the Google Calendar API for event management. The frontend is built with Next.js for a real-time conversational interface.',
+    contributions: [
+      'Built the ASP.NET Core Web API with controller–service–repository layering, exposing endpoints for conversation management, calendar operations, and knowledge base queries.',
+      'Integrated Telnyx for telephony, inbound/outbound call handling, WebSocket-based media streams for real-time audio, and transcription via Telnyx speech-to-text.',
+      'Implemented RAG (Retrieval-Augmented Generation) using PostgreSQL with pgvector for vector similarity search, enabling the assistant to answer from a custom knowledge base.',
+      'Connected Google Calendar API for event creation, listing, and conflict detection, with OAuth 2.0 token management and refresh flow.',
+      'Designed the conversation state machine to manage multi-turn dialogues, context persistence, and fallback handling for out-of-scope queries.',
+      'Built a Next.js frontend with real-time audio streaming, chat UI, and call control interface using Server-Sent Events.',
+    ],
+    outcome:
+      'Deployed as a functional voice agent prototype handling real-time calls with natural language understanding and knowledge base retrieval.',
+    tech: ['ASP.NET Core', 'Next.js', 'Telnyx', 'PostgreSQL', 'pgvector', 'Google Calendar API', 'OpenAI', 'WebSocket'],
+  },
+  {
+    name: 'Real-Time Chat MVP',
+    type: 'MVP  |  React + .NET 8 + SignalR',
+    summary:
+      'An MVP for a real-time chat application, the full architecture is in place with SignalR hubs, group messaging, presence tracking, and typing indicators, but the app is not yet feature-complete for production.',
+    contributions: [
+      'Designed the SignalR hub architecture with separate hubs for messaging, presence, and typing notifications to keep concerns isolated.',
+      'Implemented group chat with dynamic group creation and membership management, broadcasting messages via SignalR groups.',
+      'Built online presence tracking using SignalR connection lifecycle events with a user status cache, broadcasting connect/disconnect to groups.',
+      'Added typing indicators with client-side debounce and automatic expiration after 2 seconds of inactivity.',
+      'Created a React frontend with conversation list, active chat view, and status indicators using React Context for SignalR state.',
+      'Set up message persistence with EF Core and SQL Server including pagination for infinite scroll and soft-delete support.',
+    ],
+    outcome:
+      'MVP is functional — group messaging, presence, and typing indicators all work. Not yet production-ready; needs auth, media sharing, and end-to-end encryption.',
+    tech: ['.NET 8', 'SignalR', 'React', 'EF Core', 'SQL Server', 'WebSocket'],
   },
 ]
 
@@ -241,7 +275,7 @@ export type Job = {
 export const EXPERIENCE: Job[] = [
   {
     role: '.NET Full Stack Developer',
-    company: 'Technovez',
+    company: 'Technovient Solutions',
     location: 'Multan',
     period: 'Feb 2024 — Present',
     current: true,
@@ -258,7 +292,7 @@ export const EXPERIENCE: Job[] = [
   },
   {
     role: '.NET Backend Developer',
-    company: 'Technovez',
+    company: 'Technovient Solutions',
     location: 'Multan',
     period: 'Aug 2023 — Feb 2024',
     summary: 'Focused on fast, reliable backend systems built on clean architecture.',
@@ -271,7 +305,7 @@ export const EXPERIENCE: Job[] = [
   },
   {
     role: '.NET Intern',
-    company: 'Technovez',
+    company: 'Technovient Solutions',
     location: 'Multan',
     period: 'Feb 2023 — Aug 2023',
     summary: 'Built foundations in C#, OOP, and .NET Core under senior supervision.',
