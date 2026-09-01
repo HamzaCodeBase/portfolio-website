@@ -1,11 +1,5 @@
 <svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="180" height="180" rx="37" fill="#09090B" />
-  <defs>
-    <linearGradient id="a" x1="0" y1="0" x2="180" y2="180">
-      <stop offset="0%" stop-color="#D97706" />
-      <stop offset="50%" stop-color="#F59E0B" />
-      <stop offset="100%" stop-color="#E11D48" />
-    </linearGradient>
-  </defs>
-  <text x="90" y="118" text-anchor="middle" fill="url(#a)" font-family="system-ui,sans-serif" font-weight="800" font-size="72" letter-spacing="-2">HZ</text>
+  <rect width="180" height="180" rx="28" fill="#201C16" />
+  <text x="86" y="124" text-anchor="middle" fill="#F6F1E7" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-weight="600" font-size="94">H</text>
+  <rect x="128" y="128" width="18" height="18" fill="#B4432B" />
 </svg>
