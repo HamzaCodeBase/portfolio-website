@@ -1,10 +1,8 @@
 import { useState } from 'react'
 
 import { Reveal, SectionIndicator } from '@/components/reveal'
-import { Modal } from '@/components/tilt-card'
+import { Modal } from '@/components/modal'
 import { PROJECTS } from '@/lib/data'
-
-const FALLBACK_ACCENTS = ['#D97706', '#F59E0B', '#E11D48']
 
 export function Projects() {
   const [modalProject, setModalProject] = useState<typeof PROJECTS[0] | null>(null)
@@ -13,73 +11,62 @@ export function Projects() {
     <section id="projects" className="section-padding">
       <div className="max-w-content">
         <Reveal>
-          <SectionIndicator label="Projects" />
+          <SectionIndicator index="03" label="Selected work" />
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-            <span className="gradient-text">Projects</span>
+          <h2 className="font-display text-4xl tracking-tight sm:text-5xl">
+            Projects
           </h2>
         </Reveal>
 
-        <div className="mt-12 grid gap-8 md:grid-cols-2">
-          {PROJECTS.map((project, i) => {
-            const accent = project.accent || FALLBACK_ACCENTS[i % FALLBACK_ACCENTS.length]
-            return (
-            <Reveal key={project.name} delay={i * 0.06} className="h-full">
-              <article className="group flex h-full flex-col overflow-hidden rounded-2xl border-2 border-white/5 bg-white/[0.02] transition-all duration-500 hover:border-[#D97706] hover:shadow-[0_0_30px_rgba(217,119,6,0.35),0_0_60px_rgba(217,119,6,0.12)]">
-                  <div className="h-1.5 w-full" style={{ background: `linear-gradient(90deg, ${accent}, ${accent}88, transparent)` }} />
+        <div className="mt-12 grid gap-5">
+          {PROJECTS.map((project, i) => (
+            <Reveal key={project.name} delay={i * 0.045}>
+              <button
+                type="button"
+                onClick={() => setModalProject(project)}
+                className="group grid w-full gap-4 border border-[#201C16]/14 bg-[#FBF8F1] p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-[#B4432B] hover:shadow-[0_20px_40px_rgba(32,28,22,0.1)] sm:grid-cols-[88px_1fr] sm:gap-8 sm:p-8"
+              >
+                <span className="font-display text-4xl leading-none text-[#201C16]/15 transition-colors duration-300 group-hover:text-[#B4432B]/35 sm:text-5xl">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
 
-                  <div className="flex flex-1 flex-col p-5 md:p-6">
-                    <div className="flex items-start justify-between gap-3">
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <span className="font-mono text-xs" style={{ color: `${accent}99` }}>{String(i + 1).padStart(2, '0')}</span>
-                          <h3 className="font-display text-lg font-semibold text-foreground">{project.name}</h3>
-                        </div>
-                        <p className="mt-0.5 text-sm text-muted-foreground">{project.type}</p>
-                      </div>
-                      <button
-                        onClick={() => setModalProject(project)}
-                        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-muted-foreground transition-all hover:text-foreground"
-                        style={{ background: `${accent}10` }}
-                        aria-label={`View ${project.name} details`}
-                      >
-                        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-4 w-4">
-                          <path d="M4 16L16 4M8 4h8v8" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </button>
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-start justify-between gap-x-6 gap-y-2">
+                    <div>
+                      <h3 className="font-display text-2xl transition-colors duration-300 group-hover:text-[#B4432B] sm:text-[1.7rem]">
+                        {project.name}
+                      </h3>
+                      <p className="mt-1 text-sm text-[#6B6255]">{project.type}</p>
                     </div>
-
-                    <p className="mt-4 text-sm leading-relaxed text-muted-foreground line-clamp-2">{project.summary}</p>
-
-                    <div className="mt-auto flex flex-wrap gap-1.5 pt-4">
-                      {project.tech.slice(0, 5).map((tag) => (
-                          <span key={tag} className="rounded-lg border border-white/5 bg-white/[0.02] px-2.5 py-1 font-mono text-xs text-muted-foreground">
-                            {tag}
-                          </span>
-                        ))}
-                        {project.tech.length > 5 && (
-                          <span className="rounded-lg border border-white/5 bg-white/[0.02] px-2.5 py-1 font-mono text-xs text-muted-foreground">
-                          +{project.tech.length - 5}
-                        </span>
-                      )}
-                    </div>
-
-                    <button
-                      onClick={() => setModalProject(project)}
-                      className="mt-5 inline-flex items-center gap-1.5 text-sm transition-all hover:gap-2"
-                      style={{ color: accent }}
-                    >
-                      Details
-                      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-3 w-3">
-                        <path d="M6 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </button>
+                    <span className="mt-1 inline-flex shrink-0 items-center gap-1.5 text-sm text-[#6B6255] transition-all duration-300 group-hover:translate-x-1 group-hover:text-[#B4432B]">
+                      View case study &rarr;
+                    </span>
                   </div>
-                </article>
+
+                  <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#6B6255] line-clamp-2">
+                    {project.summary}
+                  </p>
+
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {project.tech.slice(0, 5).map((tag) => (
+                      <span
+                        key={tag}
+                        className="border border-[#201C16]/15 px-2.5 py-1 font-mono text-[11px] text-[#6B6255]"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                    {project.tech.length > 5 && (
+                      <span className="px-2.5 py-1 font-mono text-[11px] text-[#6B6255]/60">
+                        +{project.tech.length - 5} more
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </button>
             </Reveal>
-            )
-          })}
+          ))}
         </div>
 
         {/* Modal */}
@@ -94,41 +81,39 @@ export function Projects() {
 function ProjectModalContent({ project }: { project: typeof PROJECTS[0] }) {
   return (
     <div>
-      <div className="flex items-center gap-2 text-xs text-[#D97706]">
-        <span className="font-mono">Details</span>
-      </div>
-      <h2 className="mt-2 font-display text-3xl font-bold text-foreground">{project.name}</h2>
-      <p className="mt-1 text-sm text-muted-foreground">{project.type}</p>
+      <p className="text-sm text-[#B4432B]">Case study</p>
+      <h2 className="mt-2 font-display text-3xl text-[#201C16]">{project.name}</h2>
+      <p className="mt-1 text-sm text-[#6B6255]">{project.type}</p>
 
       {/* Overview */}
       <div className="mt-8">
-        <h3 className="font-display text-base font-semibold text-foreground">Overview</h3>
-        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{project.summary}</p>
+        <h3 className="font-display text-base">Overview</h3>
+        <p className="mt-2 text-sm leading-relaxed text-[#6B6255]">{project.summary}</p>
       </div>
 
       {/* Technical Details */}
       <div className="mt-8">
-        <h3 className="font-display text-base font-semibold text-foreground">Technical Details</h3>
+        <h3 className="font-display text-base">Technical details</h3>
         <ul className="mt-3 space-y-3">
           {project.contributions.map((point) => (
-            <li key={point} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
-              <span className="mt-1.5 block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#D97706]/60" />
+            <li key={point} className="flex gap-3 text-sm leading-relaxed text-[#6B6255]">
+              <span className="mt-2 block h-1 w-1 shrink-0 bg-[#B4432B]" />
               {point}
             </li>
           ))}
         </ul>
       </div>
 
+      {/* Outcome */}
+      <div className="mt-8 border-l-2 border-[#B4432B] pl-4">
+        <h3 className="font-display text-base">Outcome</h3>
+        <p className="mt-2 text-sm leading-relaxed text-[#6B6255]">{project.outcome}</p>
+      </div>
+
       {/* Technologies Used */}
       <div className="mt-8">
-        <h3 className="font-display text-base font-semibold text-foreground">Technologies Used</h3>
-        <div className="mt-3 flex flex-wrap gap-2">
-          {project.tech.map((t) => (
-            <span key={t} className="rounded-lg border border-white/5 bg-white/[0.02] px-3 py-1.5 font-mono text-xs text-muted-foreground">
-              {t}
-            </span>
-          ))}
-        </div>
+        <h3 className="font-display text-base">Technologies used</h3>
+        <p className="mt-3 text-sm leading-relaxed text-[#6B6255]">{project.tech.join(' · ')}</p>
       </div>
     </div>
   )

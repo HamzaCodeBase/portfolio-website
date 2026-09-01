@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
 import { NAV_LINKS } from '@/lib/data'
-import { Magnetic } from '@/components/magnetic'
 
 export function Navbar() {
   const [visible, setVisible] = useState(true)
   const [active, setActive] = useState('')
   const [open, setOpen] = useState(false)
   const [lastY, setLastY] = useState(0)
+  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
     function onScroll() {
       const y = window.scrollY
       setVisible(y < 60 || y < lastY)
+      setScrolled(y > 20)
       setLastY(y)
     }
     window.addEventListener('scroll', onScroll, { passive: true })
@@ -35,42 +37,49 @@ export function Navbar() {
   }, [])
 
   return (
-    <nav
+    <motion.nav
       role="navigation"
       aria-label="Main navigation"
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-700 ${
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      className={`fixed inset-x-0 top-0 z-50 bg-[#F6F1E7] transition-[transform,border-color] duration-500 ${
         visible ? 'translate-y-0' : '-translate-y-full'
-      } bg-[#09090B]`}
+      } ${scrolled ? 'border-b border-[#201C16]/12' : 'border-b border-transparent'}`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <Magnetic as="a" href="#home" strength={0.15}>
-          <span className="font-display text-xl font-bold tracking-tight">
-            <span className="gradient-text">HZ</span>
-            <span className="text-muted-foreground">.</span>
-          </span>
-        </Magnetic>
+      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-5">
+        <a href="#home" className="font-display text-lg italic">
+          Hamza Zafar
+        </a>
 
-        <div className="hidden items-center gap-1 md:flex">
+        <div className="hidden items-center gap-7 md:flex">
           {NAV_LINKS.map((link) => {
             const isActive = active === link.href.replace('#', '')
             return (
-              <Magnetic key={link.href} as="a" href={link.href} strength={0.15}>
-                <span className={`relative rounded-xl px-4 py-2 text-sm transition-all ${
-                  isActive ? 'text-[#D97706]' : 'text-muted-foreground hover:text-foreground'
-                }`}>
-                  {link.label}
-                  {isActive && (
-                    <span className="absolute inset-x-2 -bottom-px h-[2px] rounded-full bg-[#D97706]" />
-                  )}
-                </span>
-              </Magnetic>
+              <a
+                key={link.href}
+                href={link.href}
+                className={`relative py-1 text-sm transition-colors ${
+                  isActive ? 'text-[#B4432B]' : 'text-[#6B6255] hover:text-[#201C16]'
+                }`}
+              >
+                {link.label}
+                {isActive && (
+                  <motion.span
+                    layoutId="nav-underline"
+                    className="absolute inset-x-0 -bottom-0.5 h-px bg-[#B4432B]"
+                    transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                  />
+                )}
+              </a>
             )
           })}
-          <Magnetic as="a" href="#contact" strength={0.15}>
-            <span className="ml-3 rounded-xl bg-[#D97706] px-5 py-2.5 text-sm font-semibold text-white transition-all hover:shadow-[0_0_30px_rgba(217,119,6,0.3)]">
-              Let&rsquo;s talk
-            </span>
-          </Magnetic>
+          <a
+            href="#contact"
+            className="border border-[#201C16]/20 px-4 py-2 text-sm transition-transform transition-colors duration-200 hover:border-[#B4432B] hover:text-[#B4432B] active:scale-[0.96]"
+          >
+            Let&rsquo;s talk
+          </a>
         </div>
 
         <button
@@ -87,13 +96,13 @@ export function Navbar() {
       </div>
 
       {open && (
-        <div className="mx-4 mb-4 rounded-2xl border border-white/10 bg-[#09090B]/95 p-4 md:hidden">
+        <div className="border-t border-[#201C16]/12 bg-[#F6F1E7] md:hidden">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="block rounded-xl px-4 py-3 text-sm text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground"
+              className="block border-b border-[#201C16]/8 px-6 py-3 text-sm text-[#6B6255] transition-colors hover:text-[#201C16]"
             >
               {link.label}
             </a>
@@ -101,12 +110,12 @@ export function Navbar() {
           <a
             href="#contact"
             onClick={() => setOpen(false)}
-            className="mt-2 block rounded-xl bg-[#D97706] px-4 py-3 text-center text-sm font-semibold text-white"
+            className="block px-6 py-3 text-center text-sm text-[#B4432B]"
           >
             Let&rsquo;s talk
           </a>
         </div>
       )}
-    </nav>
+    </motion.nav>
   )
 }

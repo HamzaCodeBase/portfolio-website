@@ -122,7 +122,6 @@ export type Project = {
   contributions: string[]
   outcome: string
   tech: string[]
-  accent?: string
 }
 
 export const PROJECTS: Project[] = [
@@ -146,7 +145,6 @@ export const PROJECTS: Project[] = [
   {
     name: 'Class Management System',
     type: 'System modernization  |  .NET 8',
-    accent: '#E11D48',
     summary:
       'Modernized a legacy Class Management System from .NET Framework 4.8 to .NET 8, migrating from Web Forms to ASP.NET Core MVC. The project involved incrementally replacing monolithic System.Web components with modern middleware, restructuring the data layer to EF Core, and ensuring full feature parity throughout the migration.',
     contributions: [

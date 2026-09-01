@@ -5,24 +5,18 @@ type RevealProps = {
   children: ReactNode
   className?: string
   delay?: number
-  from?: 'bottom' | 'left' | 'right'
 }
 
-const fromVariants = {
-  bottom: { y: 40 },
-  left: { x: -40 },
-  right: { x: 40 },
-}
+const ease = [0.16, 1, 0.3, 1] as const
 
-export function Reveal({ children, className, delay = 0, from = 'bottom' }: RevealProps) {
-  const dir = fromVariants[from]
+export function Reveal({ children, className, delay = 0 }: RevealProps) {
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, scale: 0.97, ...dir }}
-      whileInView={{ opacity: 1, scale: 1, x: 0, y: 0 }}
+      initial={{ opacity: 0, y: 14 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.8, delay, ease: [0.215, 0.61, 0.355, 1] }}
+      transition={{ duration: 0.55, delay, ease }}
     >
       {children}
     </motion.div>
@@ -32,21 +26,21 @@ export function Reveal({ children, className, delay = 0, from = 'bottom' }: Reve
 export function SectionReveal({ children }: { children: ReactNode }) {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.9, z: -100 }}
-      whileInView={{ opacity: 1, scale: 1, z: 0 }}
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.9, ease: [0.25, 1, 0.5, 1] }}
+      transition={{ duration: 0.55, ease }}
     >
       {children}
     </motion.div>
   )
 }
 
-export function SectionIndicator({ label }: { label: string }) {
+export function SectionIndicator({ label, index }: { label: string; index: string }) {
   return (
-    <div className="mb-6 flex items-center gap-3 text-xs tracking-[0.2em] uppercase text-muted-foreground">
-      <span className="inline-block h-px w-12 bg-[#D97706]/40" />
-      {label}
+    <div className="mb-6 flex items-baseline gap-3 text-sm text-[#6B6255]">
+      <span className="font-mono text-xs text-[#B4432B]">{index}</span>
+      <span className="uppercase tracking-[0.14em]">{label}</span>
     </div>
   )
 }

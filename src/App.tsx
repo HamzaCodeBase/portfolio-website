@@ -8,19 +8,13 @@ import { Education } from '@/components/education'
 import { GithubStats } from '@/components/github-stats'
 import { Contact } from '@/components/contact'
 import { Footer } from '@/components/footer'
-import { CursorGlow } from '@/components/cursor-glow'
-import { CursorDot } from '@/components/cursor-dot'
-import { ScrollProgress } from '@/components/scroll-progress'
 import { SectionReveal } from '@/components/reveal'
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#09090B] text-[#F1F1F3] antialiased selection:bg-[#D97706]/30">
-      <CursorGlow />
-      <CursorDot />
-      <ScrollProgress />
+    <div className="min-h-screen bg-[#F6F1E7] text-[#201C16] antialiased">
       <Navbar />
-      <main style={{ perspective: '1200px' }}>
+      <main>
         <div className="overflow-x-hidden">
           <Hero />
           <SectionReveal><About /></SectionReveal>
@@ -29,7 +23,6 @@ export default function App() {
           <SectionReveal><Experience /></SectionReveal>
           <SectionReveal><Education /></SectionReveal>
           <SectionReveal><GithubStats /></SectionReveal>
-          {/* <SectionReveal><Testimonials /></SectionReveal> */}
           <SectionReveal><Contact /></SectionReveal>
         </div>
       </main>

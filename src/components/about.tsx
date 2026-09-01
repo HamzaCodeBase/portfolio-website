@@ -1,100 +1,51 @@
 import { Reveal, SectionIndicator } from '@/components/reveal'
 import { ABOUT_FACTS, ABOUT_PARAGRAPHS, WHAT_I_DO } from '@/lib/data'
 
-const counterItems = [
-  { value: '3+', label: 'Years Experience' },
-  { value: '15+', label: 'Projects Delivered' },
-  { value: '10+', label: 'Happy Clients' },
-]
-
 export function About() {
   return (
-    <section id="about" className="section-padding">
+    <section id="about" className="section-padding border-t border-[#201C16]/12">
       <div className="max-w-content">
         <Reveal>
-          <SectionIndicator label="About" />
+          <SectionIndicator index="01" label="About" />
         </Reveal>
 
-        <div className="grid gap-16 lg:grid-cols-[1.2fr_1fr]">
+        <div className="grid gap-12 lg:grid-cols-[1.3fr_1fr] lg:gap-20">
           {/* Left - Editorial content */}
           <div>
             <Reveal>
-              <h2 className="font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-                About <span className="gradient-text">Me</span>
+              <h2 className="font-display text-4xl tracking-tight sm:text-5xl">
+                About me
               </h2>
             </Reveal>
 
-            <Reveal delay={0.1}>
-              <div className="mt-8 space-y-5 text-base leading-relaxed text-muted-foreground">
+            <Reveal delay={0.08}>
+              <div className="mt-8 space-y-5 text-base leading-relaxed text-[#6B6255]">
                 {ABOUT_PARAGRAPHS.map((p) => (
                   <p key={p.slice(0, 30)}>{p}</p>
-                ))}
-              </div>
-            </Reveal>
-
-            {/* Stats row */}
-            <Reveal delay={0.15}>
-              <div className="mt-10 grid grid-cols-3 gap-4 border-t border-white/5 pt-8 md:mt-12 md:gap-8 md:pt-10">
-                {counterItems.map((item) => (
-                  <div key={item.label}>
-                    <p className="font-display text-3xl font-bold gradient-text-duo">{item.value}</p>
-                    <p className="mt-1 text-xs text-muted-foreground">{item.label}</p>
-                  </div>
                 ))}
               </div>
             </Reveal>
           </div>
 
           {/* Right - Photo + facts */}
-          <div className="lg:pl-8">
-            <Reveal delay={0.08}>
-              <div className="relative">
-                {/* Photo */}
-                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl border border-white/5 bg-gradient-to-br from-[#D97706]/10 to-[#E11D48]/10">
-                  {/* Fallback: SVG placeholder */}
-                  <div className="flex h-full items-center justify-center">
-                    <div className="text-center">
-                      <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#D97706]/10">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="1.5" className="h-8 w-8">
-                          <path d="M16.5 6a3 3 0 11-6 0 3 3 0 016 0zM12 15c-4.418 0-8 1.79-8 4v1h16v-1c0-2.21-3.582-4-8-4z" />
-                        </svg>
-                      </div>
-                      <p className="mt-4 text-sm text-muted-foreground">Photo placeholder</p>
-                    </div>
-                  </div>
-                  {/* Foreground: photo — hides SVG when loaded */}
-                  <img
-                    src="/images/photo.png"
-                    alt="Hamza Zafar"
-                    className="absolute inset-0 z-10 h-full w-full object-cover"
-                    onError={(e) => { e.currentTarget.style.display = 'none' }}
-                  />
-                </div>
-
-                {/* Floating fact card */}
-                <div className="absolute -right-4 -bottom-4 rounded-xl border border-white/10 bg-[#09090B]/90 p-5 backdrop-blur-xl">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#D97706]/10">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="1.5" className="h-5 w-5">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-foreground">.NET Full Stack</p>
-                      <p className="text-xs text-muted-foreground">3+ years in production</p>
-                    </div>
-                  </div>
-                </div>
+          <div>
+            <Reveal delay={0.1}>
+              <div className="group aspect-[4/5] w-full overflow-hidden border border-[#201C16]/12 bg-[#EFE8D8]">
+                <img
+                  src="/images/photo.png"
+                  alt="Hamza Zafar"
+                  className="h-full w-full object-cover grayscale transition-all duration-700 ease-out group-hover:scale-105 group-hover:grayscale-0"
+                  onError={(e) => { e.currentTarget.style.display = 'none' }}
+                />
               </div>
             </Reveal>
 
-            {/* Facts list */}
-            <Reveal delay={0.12}>
-              <div className="mt-6 divide-y divide-white/5 rounded-2xl border-2 border-white/5 bg-white/[0.02] transition-all duration-500 hover:border-[#D97706] hover:shadow-[0_0_30px_rgba(217,119,6,0.35),0_0_60px_rgba(217,119,6,0.12)]">
+            <Reveal delay={0.16}>
+              <div className="mt-6 divide-y divide-[#201C16]/12 border-y border-[#201C16]/12">
                 {ABOUT_FACTS.map((fact) => (
-                  <div key={fact.label} className="flex items-center justify-between gap-4 px-4 py-3 md:px-6 md:py-4">
-                    <span className="text-sm text-muted-foreground">{fact.label}</span>
-                    <span className="text-right text-sm font-medium text-foreground">{fact.value}</span>
+                  <div key={fact.label} className="flex items-center justify-between gap-4 py-3.5">
+                    <span className="text-sm text-[#6B6255]">{fact.label}</span>
+                    <span className="text-right text-sm">{fact.value}</span>
                   </div>
                 ))}
               </div>
@@ -102,24 +53,21 @@ export function About() {
           </div>
         </div>
 
-        {/* What I Do - staggered cards */}
-        <div className="mt-24">
+        {/* What I Do */}
+        <div className="mt-20">
           <Reveal>
-            <SectionIndicator label="Expertise" />
-          </Reveal>
-          <Reveal delay={0.05}>
-            <h3 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
-              What I bring to the table
-            </h3>
+            <h3 className="font-display text-2xl">What I bring to the table</h3>
           </Reveal>
 
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 border-t border-[#201C16]/12">
             {WHAT_I_DO.map((item, i) => (
-              <Reveal key={item.title} delay={i * 0.05}>
-                <div className="group h-full rounded-2xl border-2 border-white/5 bg-[#09090B] p-6 transition-all duration-500 hover:border-[#D97706] hover:shadow-[0_0_30px_rgba(217,119,6,0.35),0_0_60px_rgba(217,119,6,0.12)] md:p-8">
-                  <span className="font-mono text-xs text-[#D97706]/50">{String(i + 1).padStart(2, '0')}</span>
-                  <h4 className="mt-4 font-display text-lg font-semibold text-foreground">{item.title}</h4>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+              <Reveal key={item.title} delay={i * 0.06}>
+                <div className="group flex flex-col gap-1 border-b border-[#201C16]/12 py-6 transition-all duration-300 hover:pl-3 sm:flex-row sm:items-baseline sm:gap-8">
+                  <span className="font-mono text-xs text-[#B4432B] sm:w-6 sm:shrink-0">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <h4 className="font-display text-lg transition-colors group-hover:text-[#B4432B] sm:w-56 sm:shrink-0">{item.title}</h4>
+                  <p className="max-w-xl text-sm leading-relaxed text-[#6B6255]">{item.text}</p>
                 </div>
               </Reveal>
             ))}
