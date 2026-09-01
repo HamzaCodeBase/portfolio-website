@@ -1,5 +1,6 @@
 // Requires: npm install react-github-calendar
-import { useEffect, useState } from 'react'
+import { cloneElement, useEffect, useRef, useState, type CSSProperties } from 'react'
+import { useInView } from 'framer-motion'
 import { GitHubCalendar } from 'react-github-calendar'
 import { CountUp } from '@/components/count-up'
 import { Reveal, SectionIndicator } from '@/components/reveal'
@@ -12,6 +13,9 @@ const theme = {
 export function GithubStats() {
   const [repos, setRepos] = useState<string | null>(null)
   const [blockSize, setBlockSize] = useState(12)
+  const calendarRef = useRef<HTMLDivElement>(null)
+  const inView = useInView(calendarRef, { once: true, margin: '-80px' })
+  const cellIndex = useRef(0)
 
   useEffect(() => {
     async function fetchData() {
@@ -35,8 +39,10 @@ export function GithubStats() {
     return () => window.removeEventListener('resize', onResize)
   }, [])
 
+  cellIndex.current = 0
+
   return (
-    <section className="section-padding border-t border-[#201C16]/12">
+    <section id="github" className="section-padding border-t border-[#201C16]/12">
       <div className="max-w-content">
         <Reveal>
           <SectionIndicator index="06" label="Open source" />
@@ -61,14 +67,31 @@ export function GithubStats() {
 
         <Reveal delay={0.1} className="min-w-0">
           <div className="mt-10 overflow-x-auto border-t border-[#201C16]/12 pt-8">
-            <div style={{ minWidth: 'max-content' }}>
-              <GitHubCalendar
-                username={GITHUB_USERNAME}
-                theme={theme}
-                blockSize={blockSize}
-                blockMargin={3}
-                fontSize={13}
-              />
+            <div ref={calendarRef} style={{ minWidth: 'max-content' }}>
+              {inView && (
+                <GitHubCalendar
+                  username={GITHUB_USERNAME}
+                  theme={theme}
+                  colorScheme="light"
+                  blockSize={blockSize}
+                  blockMargin={3}
+                  fontSize={13}
+                  renderBlock={(block) => {
+                    const delay = Math.min(cellIndex.current * 1.2, 480)
+                    cellIndex.current += 1
+                    const style = (block.props as { style?: CSSProperties }).style
+                    return cloneElement(block, {
+                      style: {
+                        ...style,
+                        transformBox: 'fill-box',
+                        transformOrigin: 'center',
+                        animation: 'cell-in 0.5s ease both',
+                        animationDelay: `${delay}ms`,
+                      },
+                    })
+                  }}
+                />
+              )}
             </div>
           </div>
         </Reveal>

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 
 import { Reveal, SectionIndicator } from '@/components/reveal'
 import { Modal } from '@/components/modal'
@@ -95,11 +96,17 @@ function ProjectModalContent({ project }: { project: typeof PROJECTS[0] }) {
       <div className="mt-8">
         <h3 className="font-display text-base">Technical details</h3>
         <ul className="mt-3 space-y-3">
-          {project.contributions.map((point) => (
-            <li key={point} className="flex gap-3 text-sm leading-relaxed text-[#6B6255]">
+          {project.contributions.map((point, i) => (
+            <motion.li
+              key={point}
+              initial={{ opacity: 0, x: -8 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.35, delay: 0.1 + i * 0.05, ease: [0.16, 1, 0.3, 1] }}
+              className="flex gap-3 text-sm leading-relaxed text-[#6B6255]"
+            >
               <span className="mt-2 block h-1 w-1 shrink-0 bg-[#B4432B]" />
               {point}
-            </li>
+            </motion.li>
           ))}
         </ul>
       </div>

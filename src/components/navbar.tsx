@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
+import { MagneticButton } from '@/components/magnetic-button'
 import { NAV_LINKS } from '@/lib/data'
 
 export function Navbar() {
@@ -74,12 +75,13 @@ export function Navbar() {
               </a>
             )
           })}
-          <a
+          <MagneticButton
             href="#contact"
-            className="border border-[#201C16]/20 px-4 py-2 text-sm transition-transform transition-colors duration-200 hover:border-[#B4432B] hover:text-[#B4432B] active:scale-[0.96]"
+            strength={0.3}
+            className="inline-block border border-[#201C16]/20 px-4 py-2 text-sm transition-colors duration-200 hover:border-[#B4432B] hover:text-[#B4432B] active:scale-[0.96]"
           >
             Let&rsquo;s talk
-          </a>
+          </MagneticButton>
         </div>
 
         <button
@@ -95,27 +97,35 @@ export function Navbar() {
         </button>
       </div>
 
-      {open && (
-        <div className="border-t border-[#201C16]/12 bg-[#F6F1E7] md:hidden">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              className="block border-b border-[#201C16]/8 px-6 py-3 text-sm text-[#6B6255] transition-colors hover:text-[#201C16]"
-            >
-              {link.label}
-            </a>
-          ))}
-          <a
-            href="#contact"
-            onClick={() => setOpen(false)}
-            className="block px-6 py-3 text-center text-sm text-[#B4432B]"
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="overflow-hidden border-t border-[#201C16]/12 bg-[#F6F1E7] md:hidden"
           >
-            Let&rsquo;s talk
-          </a>
-        </div>
-      )}
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="block border-b border-[#201C16]/8 px-6 py-3 text-sm text-[#6B6255] transition-colors hover:text-[#201C16]"
+              >
+                {link.label}
+              </a>
+            ))}
+            <a
+              href="#contact"
+              onClick={() => setOpen(false)}
+              className="block px-6 py-3 text-center text-sm text-[#B4432B]"
+            >
+              Let&rsquo;s talk
+            </a>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   )
 }

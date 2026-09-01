@@ -55,3 +55,8 @@
 
 @utility section-padding { @apply px-6 py-16 md:py-24; }
 @utility max-w-content { @apply mx-auto max-w-5xl; }
+
+@keyframes cell-in {
+  from { opacity: 0; transform: scale(0.4); }
+  to { opacity: 1; transform: scale(1); }
+}

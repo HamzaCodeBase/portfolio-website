@@ -1,5 +1,6 @@
-import { useState, useRef, useEffect, type FormEvent } from 'react'
-import { motion } from 'framer-motion'
+import { useState, useRef, useEffect, type FormEvent, type MouseEvent } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { MagneticButton } from '@/components/magnetic-button'
 import { Reveal, SectionIndicator } from '@/components/reveal'
 import { SOCIALS } from '@/lib/data'
 
@@ -11,6 +12,7 @@ const CHANNELS = [
 
 export function Contact() {
   const [sent, setSent] = useState(false)
+  const [copied, setCopied] = useState(false)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [details, setDetails] = useState('')
@@ -36,6 +38,17 @@ export function Contact() {
     errorTimeouts.current[field] = setTimeout(() => {
       setTouched((p) => ({ ...p, [field]: false }))
     }, 5500)
+  }
+
+  async function handleCopyEmail(e: MouseEvent<HTMLButtonElement>) {
+    e.preventDefault()
+    try {
+      await navigator.clipboard.writeText(SOCIALS.email)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {
+      window.location.href = `mailto:${SOCIALS.email}`
+    }
   }
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -70,16 +83,65 @@ export function Contact() {
           <Reveal>
             <div className="divide-y divide-[#201C16]/12 border-t border-[#201C16]/12">
               {CHANNELS.map((c) => (
-                <a
+                <div
                   key={c.label}
-                  href={c.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-baseline justify-between gap-4 py-4 transition-all duration-300 hover:pl-3"
+                  className="group flex items-center justify-between gap-4 py-4 transition-all duration-300 hover:pl-3"
                 >
-                  <span className="text-sm text-[#6B6255]">{c.label}</span>
-                  <span className="text-sm transition-colors group-hover:text-[#B4432B]">{c.value}</span>
-                </a>
+                  <a
+                    href={c.href}
+                    target={c.label === 'Email' ? undefined : '_blank'}
+                    rel={c.label === 'Email' ? undefined : 'noopener noreferrer'}
+                    className="flex flex-1 items-baseline justify-between gap-4"
+                  >
+                    <span className="text-sm text-[#6B6255]">{c.label}</span>
+                    <span className="text-sm transition-colors group-hover:text-[#B4432B]">
+                      {c.label === 'Email' && copied ? 'Copied to clipboard' : c.value}
+                    </span>
+                  </a>
+                  {c.label === 'Email' && (
+                    <button
+                      type="button"
+                      onClick={handleCopyEmail}
+                      aria-label="Copy email address"
+                      className="shrink-0 text-[#6B6255] transition-colors hover:text-[#B4432B]"
+                    >
+                      <AnimatePresence mode="wait" initial={false}>
+                        {copied ? (
+                          <motion.svg
+                            key="check"
+                            initial={{ opacity: 0, scale: 0.6 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.6 }}
+                            transition={{ duration: 0.15 }}
+                            viewBox="0 0 16 16"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            className="h-4 w-4"
+                          >
+                            <path d="M3 8.5l3 3 7-7" strokeLinecap="round" strokeLinejoin="round" />
+                          </motion.svg>
+                        ) : (
+                          <motion.svg
+                            key="copy"
+                            initial={{ opacity: 0, scale: 0.6 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.6 }}
+                            transition={{ duration: 0.15 }}
+                            viewBox="0 0 16 16"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            className="h-4 w-4"
+                          >
+                            <rect x="5.5" y="5.5" width="8" height="8" rx="1" />
+                            <path d="M3 10.5V3.5a1 1 0 0 1 1-1h7" strokeLinecap="round" />
+                          </motion.svg>
+                        )}
+                      </AnimatePresence>
+                    </button>
+                  )}
+                </div>
               ))}
             </div>
           </Reveal>
@@ -139,13 +201,14 @@ export function Contact() {
                   </div>
                 ))}
 
-                <button
+                <MagneticButton
                   type="submit"
+                  strength={0.2}
                   disabled={touched.name || touched.email || touched.details ? !isValid : false}
-                  className="mt-2 inline-flex w-fit items-center gap-2 border border-[#201C16] px-6 py-3 text-sm transition-transform transition-colors duration-200 hover:border-[#B4432B] hover:text-[#B4432B] active:scale-[0.96] disabled:cursor-not-allowed disabled:opacity-50 disabled:active:scale-100"
+                  className="mt-2 inline-flex w-fit items-center gap-2 border border-[#201C16] px-6 py-3 text-sm transition-colors duration-200 hover:border-[#B4432B] hover:text-[#B4432B] active:scale-[0.96] disabled:cursor-not-allowed disabled:opacity-50 disabled:active:scale-100"
                 >
                   {sent ? 'Message sent' : 'Send message'}
-                </button>
+                </MagneticButton>
               </div>
             </form>
           </Reveal>

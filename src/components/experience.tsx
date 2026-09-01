@@ -38,7 +38,14 @@ function ExperienceRow({ job }: { job: typeof EXPERIENCE[0] }) {
           <div className="flex flex-wrap items-center gap-3">
             <h3 className="font-display text-xl">{job.role}</h3>
             {job.current && (
-              <span className="text-xs text-[#B4432B]">Current</span>
+              <span className="inline-flex items-center gap-1.5 text-xs text-[#B4432B]">
+                <motion.span
+                  className="h-1.5 w-1.5 rounded-full bg-[#B4432B]"
+                  animate={{ opacity: [1, 0.35, 1] }}
+                  transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+                />
+                Current
+              </span>
             )}
           </div>
           <p className="mt-1 text-sm text-[#6B6255]">{job.company} &middot; {job.location}</p>

@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
 import { CountUp } from '@/components/count-up'
+import { MagneticButton } from '@/components/magnetic-button'
 import { TechChips } from '@/components/tech-chips'
 import { HERO_STATS, PROFILE } from '@/lib/data'
 
@@ -67,12 +68,13 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.55, ease }}
               className="mt-10 flex flex-wrap items-center gap-6"
             >
-              <a
+              <MagneticButton
                 href="#projects"
-                className="border border-[#201C16] px-6 py-3 text-sm transition-transform transition-colors duration-200 hover:border-[#B4432B] hover:text-[#B4432B] active:scale-[0.96]"
+                strength={0.3}
+                className="inline-block border border-[#201C16] px-6 py-3 text-sm transition-colors duration-200 hover:border-[#B4432B] hover:text-[#B4432B] active:scale-[0.96]"
               >
                 View my work
-              </a>
+              </MagneticButton>
               <a href="#contact" className="link-underline text-sm">
                 Get in touch &rarr;
               </a>
