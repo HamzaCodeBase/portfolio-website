@@ -1,7 +1,6 @@
 import { KonamiEgg } from '@/components/konami-egg'
 import { Navbar } from '@/components/navbar'
 import { ReadingProgress } from '@/components/reading-progress'
-import { SectionStamps } from '@/components/section-stamps'
 import { Hero } from '@/components/hero'
 import { About } from '@/components/about'
 import { Skills } from '@/components/skills'
@@ -30,10 +29,8 @@ export default function App() {
           <SectionReveal><Contact /></SectionReveal>
         </div>
       </main>
-      <div id="stamps-hide-sentinel" />
       <Footer />
       <KonamiEgg />
-      <SectionStamps />
     </div>
   )
 }

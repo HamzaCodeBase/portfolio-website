@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
 import { CountUp } from '@/components/count-up'
+import { DragToy } from '@/components/drag-toy'
 import { MagneticButton } from '@/components/magnetic-button'
 import { TechChips } from '@/components/tech-chips'
 import { HERO_STATS, PROFILE } from '@/lib/data'
@@ -24,6 +25,7 @@ export function Hero() {
 
   return (
     <section id="home" ref={sectionRef} className="relative flex min-h-screen items-center pt-24">
+      <DragToy />
       <motion.div style={{ y, opacity }} className="mx-auto w-full max-w-6xl px-6 py-16">
         <div className="grid gap-16 lg:grid-cols-[1.15fr_1fr] lg:items-center lg:gap-8">
           <div>
